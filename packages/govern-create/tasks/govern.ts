@@ -36,7 +36,7 @@ task('deploy-govern', 'Deploys a Govern instance')
       {
         registry,
         factory,
-        useProxies = true,
+        useProxies = false,
         name,
         token = `0x${'00'.repeat(20)}`,
         tokenName = name,
@@ -60,20 +60,31 @@ task('deploy-govern', 'Deploys a Govern instance')
             'GovernBaseFactory',
             (await deployments.get('GovernBaseFactory')).address
           )
-      
-      // TODO: newGovern has been changed, this needs to reflect.
+
+        const tokenData = {
+            tokenAddress: '0x6e7c3BC98bee14302AA2A98B4c5C86b13eB4b6Cd',
+            tokenName: tokenName,
+            tokenSymbol: tokenSymbol,
+            tokenDecimals: 18,
+            mintAddress: '0xdf456B614fE9FF1C7c0B380330Da29C96d40FB02',
+            mintAmount: 1000,
+            merkleRoot: '0x'+'00'.repeat(32),
+            merkleMintAmount:0,
+            merkleTree: '0x',
+            merkleContext: '0x'
+        };
+
       const tx = await baseFactoryContract.newGovern(
-        {
-          tokenAddress: token,
-          tokenName: tokenName || name,
-          tokenSymbol: tokenSymbol,
-          tokenDecimals: 18,
-        },
+        tokenData,
+        [],
         useProxies,
-        ERC3000DefaultConfig,
+        {...ERC3000DefaultConfig,
+            resolver: '0x949f75Ab8362B4e53967742dC93CC289eFb43f6D',
+            executionDelay: 60
+        },
         name,
         {
-          gasLimit: useProxies ? 2e6 : 9e6,
+          gasLimit: useProxies ? 2e6 : 12e6,
           gasPrice: 2e9,
         }
       )

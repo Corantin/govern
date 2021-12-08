@@ -11,6 +11,7 @@ import 'hardhat-typechain'
 import 'solidity-coverage'
 import './tasks/govern'
 import './tasks/ens'
+import './tasks/schedule'
 
 import { node_url, accounts, RINKEBY_URL } from './utils/network'
 
