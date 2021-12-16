@@ -59,6 +59,7 @@ task('schedule', 'Schedule an operation')
     }
   )
 
+// Remember to use the execution time from the previous as the exectime param below
 task('execute', 'Execute an operation')
   .addOptionalParam('queue', 'GovernQueue address')
   .addOptionalParam('govern', 'Govern address')
