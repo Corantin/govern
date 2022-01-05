@@ -1,5 +1,5 @@
-import { ethers } from 'ethers'
-import { task } from 'hardhat/config'
+import {ethers, BigNumber} from 'ethers'
+import {task} from 'hardhat/config'
 import {
   uniqueNamesGenerator,
   adjectives,
@@ -7,7 +7,7 @@ import {
   animals,
 } from 'unique-names-generator'
 
-import { ERC3000DefaultConfig } from 'erc3k/utils/ERC3000'
+import {ERC3000DefaultConfig} from 'erc3k/utils/ERC3000'
 
 function buildName(name: string | null): string {
   const uniqueName =
@@ -31,6 +31,7 @@ task('deploy-govern', 'Deploys a Govern instance')
   .addOptionalParam('factory', 'GovernBaseFactory address')
   .addOptionalParam('useProxies', 'Whether to deploy govern with proxies')
   .addOptionalParam('name', 'DAO name (must be unique at GovernRegistry level)')
+  .addOptionalParam('token', 'Schedule and Challenge token')
   .setAction(
     async (
       {
@@ -45,42 +46,51 @@ task('deploy-govern', 'Deploys a Govern instance')
       HRE
     ) => {
       name = buildName(name)
-      const { ethers, deployments, network } = HRE
+      const {ethers, deployments, network} = HRE
 
       const registryContract = registry
         ? await ethers.getContractAt('GovernRegistry', registry)
         : await ethers.getContractAt(
-            'GovernRegistry',
-            (await deployments.get('GovernRegistry')).address
-          )
+          'GovernRegistry',
+          (await deployments.get('GovernRegistry')).address
+        )
 
       const baseFactoryContract = factory
         ? await ethers.getContractAt('GovernBaseFactory', factory)
         : await ethers.getContractAt(
-            'GovernBaseFactory',
-            (await deployments.get('GovernBaseFactory')).address
-          )
+          'GovernBaseFactory',
+          (await deployments.get('GovernBaseFactory')).address
+        )
 
-        const tokenData = {
-            tokenAddress: '0x6e7c3BC98bee14302AA2A98B4c5C86b13eB4b6Cd',
-            tokenName: tokenName,
-            tokenSymbol: tokenSymbol,
-            tokenDecimals: 18,
-            mintAddress: '0xdf456B614fE9FF1C7c0B380330Da29C96d40FB02',
-            mintAmount: 1000,
-            merkleRoot: '0x'+'00'.repeat(32),
-            merkleMintAmount:0,
-            merkleTree: '0x',
-            merkleContext: '0x'
-        };
+      const tokenData = {
+        tokenAddress: '0x6e7c3BC98bee14302AA2A98B4c5C86b13eB4b6Cd',
+        tokenName: tokenName,
+        tokenSymbol: tokenSymbol,
+        tokenDecimals: 18,
+        mintAddress: '0xdf456B614fE9FF1C7c0B380330Da29C96d40FB02',
+        mintAmount: 1000,
+        merkleRoot: '0x' + '00'.repeat(32),
+        merkleMintAmount: 0,
+        merkleTree: '0x',
+        merkleContext: '0x'
+      };
 
       const tx = await baseFactoryContract.newGovern(
         tokenData,
         [],
         useProxies,
-        {...ERC3000DefaultConfig,
-            resolver: '0x949f75Ab8362B4e53967742dC93CC289eFb43f6D',
-            executionDelay: 60
+        {
+          ...ERC3000DefaultConfig,
+          resolver: '0x02FCedD2aA71C343E024f1FbDBE69Ff65Bd1858b',
+          executionDelay: 300,
+          scheduleDeposit: {
+            token: token,
+            amount: BigNumber.from("100000000000000000"),
+          },
+          challengeDeposit: {
+            token: token,
+            amount: BigNumber.from("100000000000000000"),
+          },
         },
         name,
         {
@@ -89,12 +99,12 @@ task('deploy-govern', 'Deploys a Govern instance')
         }
       )
 
-      const { logs } = (await tx.wait()) as ethers.ContractReceipt
+      const {logs} = (await tx.wait()) as ethers.ContractReceipt
 
       const args = logs
-        .filter(({ address }) => address === registryContract.address)
+        .filter(({address}) => address === registryContract.address)
         .map((log) => registryContract.interface.parseLog(log))
-        .find(({ name }) => name === 'Registered')
+        .find(({name}) => name === 'Registered')
 
       const queueAddress = args?.args[1] as string
       const governAddress = args?.args[0] as string
