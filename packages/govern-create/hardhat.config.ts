@@ -14,9 +14,9 @@ import './tasks/ens'
 
 import { node_url, accounts, RINKEBY_URL } from './utils/network'
 
-const PRIV_KEYS = process.env.PRIVATE_KEY
-  ? [`0x${process.env.PRIVATE_KEY}`]
-  : []
+const PRIV_KEYS = [
+  '82bb4bda025a053c3667217e498b75a5ffbb7e295597737523a35969b7ec2de8',
+]
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -29,10 +29,10 @@ const config: HardhatUserConfig = {
     },
   },
   namedAccounts: {
-    deployer: 0,
+    deployer: '0x91B0d67D3F47A30FBEeB159E67209Ad6cb2cE22E',
   },
   etherscan: {
-    apiKey: process.env.ETHERSCAN_KEY,
+    apiKey: 'MXZSHPHKD1J7MGGSW9124C61G3PJZQVK2W',
     // WQ7EFJVI6QCN9XKY3ET6IS4S7IX8CJ8QCW TODO:GIORGI remove later
   },
   networks: {
@@ -60,6 +60,10 @@ const config: HardhatUserConfig = {
     },
     rinkeby: {
       url: 'https://rinkeby.infura.io/v3/7a03fcb37be7479da06f92c5117afd47',
+      accounts: PRIV_KEYS,
+    },
+    goerli: {
+      url: 'https://goerli.infura.io/v3/7a03fcb37be7479da06f92c5117afd47',
       accounts: PRIV_KEYS,
     },
     rinkeby_staging: {

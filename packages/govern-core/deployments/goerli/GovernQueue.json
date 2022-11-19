@@ -1,0 +1,2027 @@
+{
+  "address": "0x71aCe36baFFcEA97e934874B3F2f340C292d4f1E",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_aclRoot",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "executionDelay",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "token",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Collateral",
+              "name": "scheduleDeposit",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "token",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Collateral",
+              "name": "challengeDeposit",
+              "type": "tuple"
+            },
+            {
+              "internalType": "address",
+              "name": "resolver",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "rules",
+              "type": "bytes"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maxCalldataSize",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct ERC3000Data.Config",
+          "name": "_initialConfig",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "containerHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "actor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "reason",
+          "type": "bytes"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "resolverId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct ERC3000Data.Collateral",
+          "name": "collateral",
+          "type": "tuple"
+        }
+      ],
+      "name": "Challenged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "configHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "actor",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "executionDelay",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "token",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Collateral",
+              "name": "scheduleDeposit",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "token",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Collateral",
+              "name": "challengeDeposit",
+              "type": "tuple"
+            },
+            {
+              "internalType": "address",
+              "name": "resolver",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "rules",
+              "type": "bytes"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maxCalldataSize",
+              "type": "uint256"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct ERC3000Data.Config",
+          "name": "config",
+          "type": "tuple"
+        }
+      ],
+      "name": "Configured",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "containerHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "actor",
+          "type": "address"
+        }
+      ],
+      "name": "Executed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "role",
+          "type": "bytes4"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "actor",
+          "type": "address"
+        }
+      ],
+      "name": "Frozen",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "role",
+          "type": "bytes4"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "actor",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "who",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "contract IACLOracle",
+          "name": "oracle",
+          "type": "address"
+        }
+      ],
+      "name": "Granted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "name": "Initialized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "sig",
+          "type": "bytes4"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "ReceivedCallback",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes4",
+          "name": "sig",
+          "type": "bytes4"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes4",
+          "name": "magicNumber",
+          "type": "bytes4"
+        }
+      ],
+      "name": "RegisteredCallback",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "RegisteredStandard",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "containerHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "actor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "approved",
+          "type": "bool"
+        }
+      ],
+      "name": "Resolved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "role",
+          "type": "bytes4"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "actor",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "who",
+          "type": "address"
+        }
+      ],
+      "name": "Revoked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "contract IArbitrator",
+          "name": "arbitrator",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "disputeId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "ruling",
+          "type": "uint256"
+        }
+      ],
+      "name": "Ruled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "containerHash",
+          "type": "bytes32"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "nonce",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "executionTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "submitter",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IERC3000Executor",
+              "name": "executor",
+              "type": "address"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "to",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "data",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Action[]",
+              "name": "actions",
+              "type": "tuple[]"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "allowFailuresMap",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes",
+              "name": "proof",
+              "type": "bytes"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct ERC3000Data.Payload",
+          "name": "payload",
+          "type": "tuple"
+        }
+      ],
+      "name": "Scheduled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "containerHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "actor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "reason",
+          "type": "bytes"
+        }
+      ],
+      "name": "Vetoed",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "ROOT_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "enum ACLData.BulkOp",
+              "name": "op",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bytes4",
+              "name": "role",
+              "type": "bytes4"
+            },
+            {
+              "internalType": "address",
+              "name": "who",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct ACLData.BulkItem[]",
+          "name": "items",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "bulk",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "executionTime",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "submitter",
+                  "type": "address"
+                },
+                {
+                  "internalType": "contract IERC3000Executor",
+                  "name": "executor",
+                  "type": "address"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "to",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "value",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "data",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Action[]",
+                  "name": "actions",
+                  "type": "tuple[]"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "allowFailuresMap",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "proof",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Payload",
+              "name": "payload",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "executionDelay",
+                  "type": "uint256"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "amount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Collateral",
+                  "name": "scheduleDeposit",
+                  "type": "tuple"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "amount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Collateral",
+                  "name": "challengeDeposit",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "address",
+                  "name": "resolver",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "rules",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "maxCalldataSize",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Config",
+              "name": "config",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct ERC3000Data.Container",
+          "name": "_container",
+          "type": "tuple"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_reason",
+          "type": "bytes"
+        }
+      ],
+      "name": "challenge",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "disputeId",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "challengerCache",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "configHash",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "executionDelay",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "token",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Collateral",
+              "name": "scheduleDeposit",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "token",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Collateral",
+              "name": "challengeDeposit",
+              "type": "tuple"
+            },
+            {
+              "internalType": "address",
+              "name": "resolver",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "rules",
+              "type": "bytes"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maxCalldataSize",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct ERC3000Data.Config",
+          "name": "_config",
+          "type": "tuple"
+        }
+      ],
+      "name": "configure",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "contract IArbitrator",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "disputeItemCache",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "executionTime",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "submitter",
+                  "type": "address"
+                },
+                {
+                  "internalType": "contract IERC3000Executor",
+                  "name": "executor",
+                  "type": "address"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "to",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "value",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "data",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Action[]",
+                  "name": "actions",
+                  "type": "tuple[]"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "allowFailuresMap",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "proof",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Payload",
+              "name": "payload",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "executionDelay",
+                  "type": "uint256"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "amount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Collateral",
+                  "name": "scheduleDeposit",
+                  "type": "tuple"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "amount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Collateral",
+                  "name": "challengeDeposit",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "address",
+                  "name": "resolver",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "rules",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "maxCalldataSize",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Config",
+              "name": "config",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct ERC3000Data.Container",
+          "name": "_container",
+          "type": "tuple"
+        }
+      ],
+      "name": "execute",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "failureMap",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes[]",
+          "name": "",
+          "type": "bytes[]"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "_role",
+          "type": "bytes4"
+        }
+      ],
+      "name": "freeze",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "_role",
+          "type": "bytes4"
+        },
+        {
+          "internalType": "address",
+          "name": "_who",
+          "type": "address"
+        }
+      ],
+      "name": "grant",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "_role",
+          "type": "bytes4"
+        },
+        {
+          "internalType": "address",
+          "name": "_who",
+          "type": "address"
+        },
+        {
+          "internalType": "contract IACLOracle",
+          "name": "_oracle",
+          "type": "address"
+        }
+      ],
+      "name": "grantWithOracle",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "initBlocks",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_aclRoot",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "executionDelay",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "token",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Collateral",
+              "name": "scheduleDeposit",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "token",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Collateral",
+              "name": "challengeDeposit",
+              "type": "tuple"
+            },
+            {
+              "internalType": "address",
+              "name": "resolver",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "rules",
+              "type": "bytes"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maxCalldataSize",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct ERC3000Data.Config",
+          "name": "_initialConfig",
+          "type": "tuple"
+        }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "_role",
+          "type": "bytes4"
+        }
+      ],
+      "name": "isFrozen",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "nonce",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "queue",
+      "outputs": [
+        {
+          "internalType": "enum GovernQueueStateLib.State",
+          "name": "state",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "executionTime",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "submitter",
+                  "type": "address"
+                },
+                {
+                  "internalType": "contract IERC3000Executor",
+                  "name": "executor",
+                  "type": "address"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "to",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "value",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "data",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Action[]",
+                  "name": "actions",
+                  "type": "tuple[]"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "allowFailuresMap",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "proof",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Payload",
+              "name": "payload",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "executionDelay",
+                  "type": "uint256"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "amount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Collateral",
+                  "name": "scheduleDeposit",
+                  "type": "tuple"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "amount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Collateral",
+                  "name": "challengeDeposit",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "address",
+                  "name": "resolver",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "rules",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "maxCalldataSize",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Config",
+              "name": "config",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct ERC3000Data.Container",
+          "name": "_container",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_disputeId",
+          "type": "uint256"
+        }
+      ],
+      "name": "resolve",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "failureMap",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes[]",
+          "name": "",
+          "type": "bytes[]"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "_role",
+          "type": "bytes4"
+        },
+        {
+          "internalType": "address",
+          "name": "_who",
+          "type": "address"
+        }
+      ],
+      "name": "revoke",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "roles",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "executionTime",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "submitter",
+                  "type": "address"
+                },
+                {
+                  "internalType": "contract IERC3000Executor",
+                  "name": "executor",
+                  "type": "address"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "to",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "value",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "data",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Action[]",
+                  "name": "actions",
+                  "type": "tuple[]"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "allowFailuresMap",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "proof",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Payload",
+              "name": "payload",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "executionDelay",
+                  "type": "uint256"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "amount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Collateral",
+                  "name": "scheduleDeposit",
+                  "type": "tuple"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "amount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Collateral",
+                  "name": "challengeDeposit",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "address",
+                  "name": "resolver",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "rules",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "maxCalldataSize",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Config",
+              "name": "config",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct ERC3000Data.Container",
+          "name": "_container",
+          "type": "tuple"
+        }
+      ],
+      "name": "schedule",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "containerHash",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "_interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "executionTime",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "address",
+                  "name": "submitter",
+                  "type": "address"
+                },
+                {
+                  "internalType": "contract IERC3000Executor",
+                  "name": "executor",
+                  "type": "address"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "to",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "value",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "data",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Action[]",
+                  "name": "actions",
+                  "type": "tuple[]"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "allowFailuresMap",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "proof",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Payload",
+              "name": "payload",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "executionDelay",
+                  "type": "uint256"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "amount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Collateral",
+                  "name": "scheduleDeposit",
+                  "type": "tuple"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "token",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "amount",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct ERC3000Data.Collateral",
+                  "name": "challengeDeposit",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "address",
+                  "name": "resolver",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "rules",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "maxCalldataSize",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ERC3000Data.Config",
+              "name": "config",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct ERC3000Data.Container",
+          "name": "_container",
+          "type": "tuple"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_reason",
+          "type": "bytes"
+        }
+      ],
+      "name": "veto",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x80d6f117e0b95774d54f1a8f28e03c6a5b22bfc2858029f3c0a0386a81d4394a",
+  "receipt": {
+    "to": null,
+    "from": "0x91B0d67D3F47A30FBEeB159E67209Ad6cb2cE22E",
+    "contractAddress": "0x71aCe36baFFcEA97e934874B3F2f340C292d4f1E",
+    "transactionIndex": 20,
+    "gasUsed": "3160959",
+    "logsBloom": "0x00000000000002000000000410000100000000008000020000000000014000002000000000020000000000000000100000000000000000000000000002000000000000000000000000040080000000000000000400000000200000000020000000000000000100000000000000000000000000010000000400000000000000000000000000000000000000000000000000000004000000000080000000000002000000000400001000000000000000100000004000000000000000000000020008000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000020000000001000000000000000000000200",
+    "blockHash": "0xf7c60da147000ba9ba94a314b172bafd08b730e335fc9dcd98028d5f9b26a456",
+    "transactionHash": "0x80d6f117e0b95774d54f1a8f28e03c6a5b22bfc2858029f3c0a0386a81d4394a",
+    "logs": [
+      {
+        "transactionIndex": 20,
+        "blockNumber": 7543552,
+        "transactionHash": "0x80d6f117e0b95774d54f1a8f28e03c6a5b22bfc2858029f3c0a0386a81d4394a",
+        "address": "0x71aCe36baFFcEA97e934874B3F2f340C292d4f1E",
+        "topics": [
+          "0xc62063b81f7036fd97a0dc546516e99f11004d2d76ca0fddd3866346c86e7091",
+          "0x586df60400000000000000000000000000000000000000000000000000000000",
+          "0x00000000000000000000000091b0d67d3f47a30fbeeb159e67209ad6cb2ce22e",
+          "0x0000000000000000000000007375ed576952bd6ced060eee2db763130ea13ba0"
+        ],
+        "data": "0x0000000000000000000000000000000000000000000000000000000000000002",
+        "logIndex": 20,
+        "blockHash": "0xf7c60da147000ba9ba94a314b172bafd08b730e335fc9dcd98028d5f9b26a456"
+      },
+      {
+        "transactionIndex": 20,
+        "blockNumber": 7543552,
+        "transactionHash": "0x80d6f117e0b95774d54f1a8f28e03c6a5b22bfc2858029f3c0a0386a81d4394a",
+        "address": "0x71aCe36baFFcEA97e934874B3F2f340C292d4f1E",
+        "topics": [
+          "0x7bc2a48a4a566e237a12186f19d985b0f76afc9d5290601edac19876253670c2",
+          "0xd99e39303be7c43f3cd7f2d4f6aa487d2867be2d071eed6a8d4a888742b0fa85"
+        ],
+        "data": "0x",
+        "logIndex": 21,
+        "blockHash": "0xf7c60da147000ba9ba94a314b172bafd08b730e335fc9dcd98028d5f9b26a456"
+      },
+      {
+        "transactionIndex": 20,
+        "blockNumber": 7543552,
+        "transactionHash": "0x80d6f117e0b95774d54f1a8f28e03c6a5b22bfc2858029f3c0a0386a81d4394a",
+        "address": "0x71aCe36baFFcEA97e934874B3F2f340C292d4f1E",
+        "topics": [
+          "0x844435c59f7ccdf12de134e8f9b3b7d664fe9f06e3263680779599ba4097bc3f",
+          "0x737056bcbba82e68d00f54d0de43833491724a1248a2889931ea580a9c7b0dd9",
+          "0x00000000000000000000000091b0d67d3f47a30fbeeb159e67209ad6cb2ce22e"
+        ],
+        "data": "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000012c000000000000000000000000dc31ee1784292379fbb2964b3b9c4124d8f89c60000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000dc31ee1784292379fbb2964b3b9c4124d8f89c60000000000000000000000000000000000000000000000000002386f26fc100000000000000000000000000006b81e57848a75369cc5f13ed98c62412a40f19e7000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000186a000000000000000000000000000000000000000000000000000000000000000140000000000000000000000000000000000000000000000000000000000000000",
+        "logIndex": 22,
+        "blockHash": "0xf7c60da147000ba9ba94a314b172bafd08b730e335fc9dcd98028d5f9b26a456"
+      },
+      {
+        "transactionIndex": 20,
+        "blockNumber": 7543552,
+        "transactionHash": "0x80d6f117e0b95774d54f1a8f28e03c6a5b22bfc2858029f3c0a0386a81d4394a",
+        "address": "0x71aCe36baFFcEA97e934874B3F2f340C292d4f1E",
+        "topics": [
+          "0xbf5e1f87f5ab65b58074cd29244d7c487a948983cda4b932e0f966b62bd34aca"
+        ],
+        "data": "0xd311828100000000000000000000000000000000000000000000000000000000",
+        "logIndex": 23,
+        "blockHash": "0xf7c60da147000ba9ba94a314b172bafd08b730e335fc9dcd98028d5f9b26a456"
+      },
+      {
+        "transactionIndex": 20,
+        "blockNumber": 7543552,
+        "transactionHash": "0x80d6f117e0b95774d54f1a8f28e03c6a5b22bfc2858029f3c0a0386a81d4394a",
+        "address": "0x71aCe36baFFcEA97e934874B3F2f340C292d4f1E",
+        "topics": [
+          "0x7bc2a48a4a566e237a12186f19d985b0f76afc9d5290601edac19876253670c2",
+          "0xbac5ecd2faa027574e2101f9b6bdc19dec3f76beff12aa506ac3391be0022e46"
+        ],
+        "data": "0x",
+        "logIndex": 24,
+        "blockHash": "0xf7c60da147000ba9ba94a314b172bafd08b730e335fc9dcd98028d5f9b26a456"
+      }
+    ],
+    "blockNumber": 7543552,
+    "cumulativeGasUsed": "8539124",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x7375Ed576952BD6CeD060EeE2Db763130eA13bA0",
+    [
+      300,
+      [
+        "0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60",
+        "10000000000000000"
+      ],
+      [
+        "0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60",
+        "10000000000000000"
+      ],
+      "0x6b81e57848A75369cC5F13ED98c62412a40F19E7",
+      "0x0000000000000000000000000000000000000000",
+      100000
+    ]
+  ],
+  "solcInputHash": "7912d06ff4990d123b64181cef2d6888",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.8+commit.0bbfe453\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_aclRoot\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"executionDelay\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"scheduleDeposit\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"challengeDeposit\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"resolver\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"rules\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"maxCalldataSize\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Config\",\"name\":\"_initialConfig\",\"type\":\"tuple\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"containerHash\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"actor\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"reason\",\"type\":\"bytes\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"resolverId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"indexed\":false,\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"collateral\",\"type\":\"tuple\"}],\"name\":\"Challenged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"configHash\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"actor\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"executionDelay\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"scheduleDeposit\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"challengeDeposit\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"resolver\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"rules\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"maxCalldataSize\",\"type\":\"uint256\"}],\"indexed\":false,\"internalType\":\"struct ERC3000Data.Config\",\"name\":\"config\",\"type\":\"tuple\"}],\"name\":\"Configured\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"containerHash\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"actor\",\"type\":\"address\"}],\"name\":\"Executed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes4\",\"name\":\"role\",\"type\":\"bytes4\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"actor\",\"type\":\"address\"}],\"name\":\"Frozen\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes4\",\"name\":\"role\",\"type\":\"bytes4\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"actor\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"who\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"contract IACLOracle\",\"name\":\"oracle\",\"type\":\"address\"}],\"name\":\"Granted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes4\",\"name\":\"sig\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"ReceivedCallback\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"sig\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"magicNumber\",\"type\":\"bytes4\"}],\"name\":\"RegisteredCallback\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"RegisteredStandard\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"containerHash\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"actor\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"approved\",\"type\":\"bool\"}],\"name\":\"Resolved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes4\",\"name\":\"role\",\"type\":\"bytes4\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"actor\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"who\",\"type\":\"address\"}],\"name\":\"Revoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"contract IArbitrator\",\"name\":\"arbitrator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"disputeId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"ruling\",\"type\":\"uint256\"}],\"name\":\"Ruled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"containerHash\",\"type\":\"bytes32\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"executionTime\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"submitter\",\"type\":\"address\"},{\"internalType\":\"contract IERC3000Executor\",\"name\":\"executor\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct ERC3000Data.Action[]\",\"name\":\"actions\",\"type\":\"tuple[]\"},{\"internalType\":\"bytes32\",\"name\":\"allowFailuresMap\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"}],\"indexed\":false,\"internalType\":\"struct ERC3000Data.Payload\",\"name\":\"payload\",\"type\":\"tuple\"}],\"name\":\"Scheduled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"containerHash\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"actor\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"reason\",\"type\":\"bytes\"}],\"name\":\"Vetoed\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"ROOT_ROLE\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"enum ACLData.BulkOp\",\"name\":\"op\",\"type\":\"uint8\"},{\"internalType\":\"bytes4\",\"name\":\"role\",\"type\":\"bytes4\"},{\"internalType\":\"address\",\"name\":\"who\",\"type\":\"address\"}],\"internalType\":\"struct ACLData.BulkItem[]\",\"name\":\"items\",\"type\":\"tuple[]\"}],\"name\":\"bulk\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"executionTime\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"submitter\",\"type\":\"address\"},{\"internalType\":\"contract IERC3000Executor\",\"name\":\"executor\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct ERC3000Data.Action[]\",\"name\":\"actions\",\"type\":\"tuple[]\"},{\"internalType\":\"bytes32\",\"name\":\"allowFailuresMap\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"}],\"internalType\":\"struct ERC3000Data.Payload\",\"name\":\"payload\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"executionDelay\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"scheduleDeposit\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"challengeDeposit\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"resolver\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"rules\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"maxCalldataSize\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Config\",\"name\":\"config\",\"type\":\"tuple\"}],\"internalType\":\"struct ERC3000Data.Container\",\"name\":\"_container\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"_reason\",\"type\":\"bytes\"}],\"name\":\"challenge\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"disputeId\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"challengerCache\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"configHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"executionDelay\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"scheduleDeposit\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"challengeDeposit\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"resolver\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"rules\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"maxCalldataSize\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Config\",\"name\":\"_config\",\"type\":\"tuple\"}],\"name\":\"configure\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"},{\"internalType\":\"contract IArbitrator\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"disputeItemCache\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"executionTime\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"submitter\",\"type\":\"address\"},{\"internalType\":\"contract IERC3000Executor\",\"name\":\"executor\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct ERC3000Data.Action[]\",\"name\":\"actions\",\"type\":\"tuple[]\"},{\"internalType\":\"bytes32\",\"name\":\"allowFailuresMap\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"}],\"internalType\":\"struct ERC3000Data.Payload\",\"name\":\"payload\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"executionDelay\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"scheduleDeposit\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"challengeDeposit\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"resolver\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"rules\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"maxCalldataSize\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Config\",\"name\":\"config\",\"type\":\"tuple\"}],\"internalType\":\"struct ERC3000Data.Container\",\"name\":\"_container\",\"type\":\"tuple\"}],\"name\":\"execute\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"failureMap\",\"type\":\"bytes32\"},{\"internalType\":\"bytes[]\",\"name\":\"\",\"type\":\"bytes[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"_role\",\"type\":\"bytes4\"}],\"name\":\"freeze\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"_role\",\"type\":\"bytes4\"},{\"internalType\":\"address\",\"name\":\"_who\",\"type\":\"address\"}],\"name\":\"grant\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"_role\",\"type\":\"bytes4\"},{\"internalType\":\"address\",\"name\":\"_who\",\"type\":\"address\"},{\"internalType\":\"contract IACLOracle\",\"name\":\"_oracle\",\"type\":\"address\"}],\"name\":\"grantWithOracle\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"initBlocks\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_aclRoot\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"executionDelay\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"scheduleDeposit\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"challengeDeposit\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"resolver\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"rules\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"maxCalldataSize\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Config\",\"name\":\"_initialConfig\",\"type\":\"tuple\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"_role\",\"type\":\"bytes4\"}],\"name\":\"isFrozen\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"nonce\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"queue\",\"outputs\":[{\"internalType\":\"enum GovernQueueStateLib.State\",\"name\":\"state\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"executionTime\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"submitter\",\"type\":\"address\"},{\"internalType\":\"contract IERC3000Executor\",\"name\":\"executor\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct ERC3000Data.Action[]\",\"name\":\"actions\",\"type\":\"tuple[]\"},{\"internalType\":\"bytes32\",\"name\":\"allowFailuresMap\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"}],\"internalType\":\"struct ERC3000Data.Payload\",\"name\":\"payload\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"executionDelay\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"scheduleDeposit\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"challengeDeposit\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"resolver\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"rules\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"maxCalldataSize\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Config\",\"name\":\"config\",\"type\":\"tuple\"}],\"internalType\":\"struct ERC3000Data.Container\",\"name\":\"_container\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"_disputeId\",\"type\":\"uint256\"}],\"name\":\"resolve\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"failureMap\",\"type\":\"bytes32\"},{\"internalType\":\"bytes[]\",\"name\":\"\",\"type\":\"bytes[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"_role\",\"type\":\"bytes4\"},{\"internalType\":\"address\",\"name\":\"_who\",\"type\":\"address\"}],\"name\":\"revoke\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"roles\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"executionTime\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"submitter\",\"type\":\"address\"},{\"internalType\":\"contract IERC3000Executor\",\"name\":\"executor\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct ERC3000Data.Action[]\",\"name\":\"actions\",\"type\":\"tuple[]\"},{\"internalType\":\"bytes32\",\"name\":\"allowFailuresMap\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"}],\"internalType\":\"struct ERC3000Data.Payload\",\"name\":\"payload\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"executionDelay\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"scheduleDeposit\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"challengeDeposit\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"resolver\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"rules\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"maxCalldataSize\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Config\",\"name\":\"config\",\"type\":\"tuple\"}],\"internalType\":\"struct ERC3000Data.Container\",\"name\":\"_container\",\"type\":\"tuple\"}],\"name\":\"schedule\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"containerHash\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"_interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"executionTime\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"submitter\",\"type\":\"address\"},{\"internalType\":\"contract IERC3000Executor\",\"name\":\"executor\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct ERC3000Data.Action[]\",\"name\":\"actions\",\"type\":\"tuple[]\"},{\"internalType\":\"bytes32\",\"name\":\"allowFailuresMap\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"}],\"internalType\":\"struct ERC3000Data.Payload\",\"name\":\"payload\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"executionDelay\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"scheduleDeposit\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Collateral\",\"name\":\"challengeDeposit\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"resolver\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"rules\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"maxCalldataSize\",\"type\":\"uint256\"}],\"internalType\":\"struct ERC3000Data.Config\",\"name\":\"config\",\"type\":\"tuple\"}],\"internalType\":\"struct ERC3000Data.Container\",\"name\":\"_container\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"_reason\",\"type\":\"bytes\"}],\"name\":\"veto\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"challenge(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)),bytes)\":{\"params\":{\"_container\":\"A ERC3000Data.Container struct holding both the payload being scheduled for execution and the current configuration of the system\",\"_reason\":\"Hint for case reviewers as to why the scheduled container is illegal\"}},\"configure((uint256,(address,uint256),(address,uint256),address,bytes,uint256))\":{\"params\":{\"_config\":\"A ERC3000Data.Config struct holding all the new params that will control the queue\"}},\"constructor\":{\"params\":{\"_aclRoot\":\"account that will be given root permissions on ACL (commonly given to factory)\",\"_initialConfig\":\"initial configuration parameters\"}},\"execute(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)))\":{\"params\":{\"_container\":\"A ERC3000Data.Container struct holding both the payload being scheduled for execution and the current configuration of the system\"}},\"resolve(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)),uint256)\":{\"params\":{\"_container\":\"A ERC3000Data.Container struct holding both the payload being scheduled for execution and the current configuration of the system\",\"_disputeId\":\"disputeId in the arbitrator in which the dispute over the container was created\"}},\"schedule(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)))\":{\"params\":{\"_container\":\"A ERC3000Data.Container struct holding both the payload being scheduled for execution and the current configuration of the system\"}}}},\"userdoc\":{\"methods\":{\"challenge(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)),bytes)\":{\"notice\":\"Challenge a container in case its scheduling is illegal as per Config.rules. Pulls collateral and dispute fees from sender into contract\"},\"configure((uint256,(address,uint256),(address,uint256),address,bytes,uint256))\":{\"notice\":\"Apply a new configuration for all *new* containers to be scheduled\"},\"execute(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)))\":{\"notice\":\"Executes an action after its execution delay has passed and its state hasn't been altered by a challenge or veto\"},\"resolve(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)),uint256)\":{\"notice\":\"Apply arbitrator's ruling over a challenge once it has come to a final ruling\"},\"schedule(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)))\":{\"notice\":\"Schedules an action for execution, allowing for challenges and vetos on a defined time window. Pulls collateral from submitter into contract.\"}}}},\"settings\":{\"compilationTarget\":{\"contracts/pipelines/GovernQueue.sol\":\"GovernQueue\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":2000},\"remappings\":[]},\"sources\":{\"@aragon/govern-contract-utils/contracts/acl/ACL.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    MIT\\r\\n */\\r\\n\\r\\npragma solidity ^0.6.8;\\r\\npragma experimental ABIEncoderV2;\\r\\n\\r\\nimport \\\"../initializable/Initializable.sol\\\";\\r\\n\\r\\nimport \\\"./IACLOracle.sol\\\";\\r\\n\\r\\nlibrary ACLData {\\r\\n    enum BulkOp { Grant, Revoke, Freeze }\\r\\n\\r\\n    struct BulkItem {\\r\\n        BulkOp op;\\r\\n        bytes4 role;\\r\\n        address who;\\r\\n    }\\r\\n}\\r\\n\\r\\ncontract ACL is Initializable {\\r\\n    bytes4 public constant ROOT_ROLE =\\r\\n        this.grant.selector\\r\\n        ^ this.revoke.selector\\r\\n        ^ this.freeze.selector\\r\\n        ^ this.bulk.selector\\r\\n    ;\\r\\n\\r\\n    // \\\"Who\\\" constants\\r\\n    address internal constant ANY_ADDR = address(-1);\\r\\n\\r\\n    // \\\"Access\\\" flags\\r\\n    address internal constant UNSET_ROLE = address(0);\\r\\n    address internal constant FREEZE_FLAG = address(1); // Also used as \\\"who\\\"\\r\\n    address internal constant ALLOW_FLAG = address(2);\\r\\n\\r\\n    // Role -> Who -> Access flag (unset or allow) or ACLOracle (any other address denominates auth via ACLOracle)\\r\\n    mapping (bytes4 => mapping (address => address)) public roles;\\r\\n\\r\\n    event Granted(bytes4 indexed role, address indexed actor, address indexed who, IACLOracle oracle);\\r\\n    event Revoked(bytes4 indexed role, address indexed actor, address indexed who);\\r\\n    event Frozen(bytes4 indexed role, address indexed actor);\\r\\n\\r\\n    modifier auth(bytes4 _role) {\\r\\n        require(willPerform(_role, msg.sender, msg.data), \\\"acl: auth\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    modifier initACL(address _initialRoot) {\\r\\n        // ACL might have been already initialized by constructors\\r\\n        if (initBlocks[\\\"acl\\\"] == 0) {\\r\\n            _initializeACL(_initialRoot);\\r\\n        } else {\\r\\n            require(roles[ROOT_ROLE][_initialRoot] == ALLOW_FLAG, \\\"acl: initial root misaligned\\\");\\r\\n        }\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    constructor(address _initialRoot) public initACL(_initialRoot) { }\\r\\n\\r\\n    function grant(bytes4 _role, address _who) external auth(ROOT_ROLE) {\\r\\n        _grant(_role, _who);\\r\\n    }\\r\\n\\r\\n    function grantWithOracle(bytes4 _role, address _who, IACLOracle _oracle) external auth(ROOT_ROLE) {\\r\\n        _grantWithOracle(_role, _who, _oracle);\\r\\n    }\\r\\n\\r\\n    function revoke(bytes4 _role, address _who) external auth(ROOT_ROLE) {\\r\\n        _revoke(_role, _who);\\r\\n    }\\r\\n\\r\\n    function freeze(bytes4 _role) external auth(ROOT_ROLE) {\\r\\n        _freeze(_role);\\r\\n    }\\r\\n\\r\\n    function bulk(ACLData.BulkItem[] calldata items) external auth(ROOT_ROLE) {\\r\\n        for (uint256 i = 0; i < items.length; i++) {\\r\\n            ACLData.BulkItem memory item = items[i];\\r\\n\\r\\n            if (item.op == ACLData.BulkOp.Grant) _grant(item.role, item.who);\\r\\n            else if (item.op == ACLData.BulkOp.Revoke) _revoke(item.role, item.who);\\r\\n            else if (item.op == ACLData.BulkOp.Freeze) _freeze(item.role);\\r\\n        }\\r\\n    }\\r\\n\\r\\n    function willPerform(bytes4 _role, address _who, bytes memory _data) internal returns (bool) {\\r\\n        // First check if the given who is auth'd, then if any address is auth'd\\r\\n        return _checkRole(_role, _who, _data) || _checkRole(_role, ANY_ADDR, _data);\\r\\n    }\\r\\n\\r\\n    function isFrozen(bytes4 _role) public view returns (bool) {\\r\\n        return roles[_role][FREEZE_FLAG] == FREEZE_FLAG;\\r\\n    }\\r\\n\\r\\n    function _initializeACL(address _initialRoot) internal onlyInit(\\\"acl\\\") {\\r\\n        _grant(ROOT_ROLE, _initialRoot);\\r\\n    }\\r\\n\\r\\n    function _grant(bytes4 _role, address _who) internal {\\r\\n        _grantWithOracle(_role, _who, IACLOracle(ALLOW_FLAG));\\r\\n    }\\r\\n\\r\\n    function _grantWithOracle(bytes4 _role, address _who, IACLOracle _oracle) internal {\\r\\n        require(!isFrozen(_role), \\\"acl: frozen\\\");\\r\\n        require(_who != FREEZE_FLAG, \\\"acl: bad freeze\\\");\\r\\n\\r\\n        roles[_role][_who] = address(_oracle);\\r\\n        emit Granted(_role, msg.sender, _who, _oracle);\\r\\n    }\\r\\n\\r\\n    function _revoke(bytes4 _role, address _who) internal {\\r\\n        require(!isFrozen(_role), \\\"acl: frozen\\\");\\r\\n\\r\\n        roles[_role][_who] = UNSET_ROLE;\\r\\n        emit Revoked(_role, msg.sender, _who);\\r\\n    }\\r\\n\\r\\n    function _freeze(bytes4 _role) internal {\\r\\n        require(!isFrozen(_role), \\\"acl: frozen\\\");\\r\\n\\r\\n        roles[_role][FREEZE_FLAG] = FREEZE_FLAG;\\r\\n        emit Frozen(_role, msg.sender);\\r\\n    }\\r\\n\\r\\n    function _checkRole(bytes4 _role, address _who, bytes memory _data) internal returns (bool) {\\r\\n        address accessFlagOrAclOracle = roles[_role][_who];\\r\\n        if (accessFlagOrAclOracle != UNSET_ROLE) {\\r\\n            if (accessFlagOrAclOracle == ALLOW_FLAG) return true;\\r\\n\\r\\n            // Since it's not a flag, assume it's an ACLOracle and try-catch to skip failures\\r\\n            try IACLOracle(accessFlagOrAclOracle).willPerform(_role, _who, _data) returns (bool allowed) {\\r\\n                if (allowed) return true;\\r\\n            } catch { }\\r\\n        }\\r\\n\\r\\n        return false;\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x4b746aefebf6dc252c2e2034f7e50b2786814d0b1b7c256de8ec31cd7c0f1b72\",\"license\":\"MIT\"},\"@aragon/govern-contract-utils/contracts/acl/IACLOracle.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    MIT\\r\\n */\\r\\n\\r\\npragma solidity ^0.6.8;\\r\\n\\r\\ninterface IACLOracle {\\r\\n    function willPerform(bytes4 role, address who, bytes calldata data) external returns (bool allowed);\\r\\n}\\r\\n\",\"keccak256\":\"0x5b7f5fed284ec040975d321b7e2a1c620a4abfdd54bb88b7e23217466e6160a9\",\"license\":\"MIT\"},\"@aragon/govern-contract-utils/contracts/adaptive-erc165/AdaptiveERC165.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    MIT\\r\\n */\\r\\n\\r\\npragma solidity ^0.6.8;\\r\\n\\r\\nimport \\\"../erc165/ERC165.sol\\\";\\r\\n\\r\\ncontract AdaptiveERC165 is ERC165 {\\r\\n    // ERC165 interface ID -> whether it is supported\\r\\n    mapping (bytes4 => bool) internal standardSupported;\\r\\n    // Callback function signature -> magic number to return\\r\\n    mapping (bytes4 => bytes32) internal callbackMagicNumbers;\\r\\n\\r\\n    bytes32 internal constant UNREGISTERED_CALLBACK = bytes32(0);\\r\\n\\r\\n    event RegisteredStandard(bytes4 interfaceId);\\r\\n    event RegisteredCallback(bytes4 sig, bytes4 magicNumber);\\r\\n    event ReceivedCallback(bytes4 indexed sig, bytes data);\\r\\n\\r\\n    function supportsInterface(bytes4 _interfaceId) override virtual public view returns (bool) {\\r\\n        return standardSupported[_interfaceId] || super.supportsInterface(_interfaceId);\\r\\n    }\\r\\n\\r\\n    function _handleCallback(bytes4 _sig, bytes memory _data) internal {\\r\\n        bytes32 magicNumber = callbackMagicNumbers[_sig];\\r\\n        require(magicNumber != UNREGISTERED_CALLBACK, \\\"adap-erc165: unknown callback\\\");\\r\\n\\r\\n        emit ReceivedCallback(_sig, _data);\\r\\n\\r\\n        // low-level return magic number\\r\\n        assembly {\\r\\n            mstore(0x00, magicNumber)\\r\\n            return(0x00, 0x20)\\r\\n        }\\r\\n    }\\r\\n\\r\\n    function _registerStandardAndCallback(bytes4 _interfaceId, bytes4 _callbackSig, bytes4 _magicNumber) internal {\\r\\n        _registerStandard(_interfaceId);\\r\\n        _registerCallback(_callbackSig, _magicNumber);\\r\\n    }\\r\\n\\r\\n    function _registerStandard(bytes4 _interfaceId) internal {\\r\\n        standardSupported[_interfaceId] = true;\\r\\n        emit RegisteredStandard(_interfaceId);\\r\\n    }\\r\\n\\r\\n    function _registerCallback(bytes4 _callbackSig, bytes4 _magicNumber) internal {\\r\\n        callbackMagicNumbers[_callbackSig] = _magicNumber;\\r\\n        emit RegisteredCallback(_callbackSig, _magicNumber);\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x56ecb92ff9cab1e4c72cbb3d55bfe8c553d651848d4d09f1e6d3c1ce22bbe1c8\",\"license\":\"MIT\"},\"@aragon/govern-contract-utils/contracts/address-utils/AddressUtils.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    MIT\\r\\n */\\r\\n\\r\\npragma solidity ^0.6.8;\\r\\n\\r\\nlibrary AddressUtils {\\r\\n    \\r\\n    function toPayable(address addr) internal pure returns (address payable) {\\r\\n        return address(bytes20(addr));\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * It is unsafe to assume that an address for which this function returns\\r\\n     * false is an externally-owned account (EOA) and not a contract.\\r\\n     *\\r\\n     * Among others, `isContract` will return false for the following\\r\\n     * types of addresses:\\r\\n     *\\r\\n     *  - an externally-owned account\\r\\n     *  - a contract in construction\\r\\n     *  - an address where a contract will be created\\r\\n     *  - an address where a contract lived, but was destroyed\\r\\n     */\\r\\n    function isContract(address addr) internal view returns (bool result) {\\r\\n        assembly {\\r\\n            result := iszero(iszero(extcodesize(addr)))\\r\\n        }\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x25c56a7f0c69e257bca0e5d06ddf1a818f79bd1370d8699397934ad0a84ce967\",\"license\":\"MIT\"},\"@aragon/govern-contract-utils/contracts/deposits/DepositLib.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    MIT\\r\\n */\\r\\n\\r\\npragma solidity ^0.6.8;\\r\\n\\r\\nimport \\\"erc3k/contracts/ERC3000Data.sol\\\";\\r\\n\\r\\nimport \\\"../erc20/ERC20.sol\\\";\\r\\nimport \\\"../erc20/SafeERC20.sol\\\";\\r\\n\\r\\nlibrary DepositLib {\\r\\n    using SafeERC20 for ERC20;\\r\\n\\r\\n    event Locked(address indexed token, address indexed from, uint256 amount);\\r\\n    event Unlocked(address indexed token, address indexed to, uint256 amount);\\r\\n\\r\\n    function collectFrom(ERC3000Data.Collateral memory _collateral, address _from) internal {\\r\\n        if (_collateral.amount > 0) {\\r\\n            ERC20 token = ERC20(_collateral.token);\\r\\n            require(token.safeTransferFrom(_from, address(this), _collateral.amount), \\\"deposit: bad token lock\\\");\\r\\n\\r\\n            emit Locked(_collateral.token, _from, _collateral.amount);\\r\\n        }\\r\\n    }\\r\\n\\r\\n    function releaseTo(ERC3000Data.Collateral memory _collateral, address _to) internal {\\r\\n        if (_collateral.amount > 0) {\\r\\n            ERC20 token = ERC20(_collateral.token);\\r\\n            require(token.safeTransfer(_to, _collateral.amount), \\\"deposit: bad token release\\\");\\r\\n\\r\\n            emit Unlocked(_collateral.token, _to, _collateral.amount);\\r\\n        }\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x7febef996d7bf32ddc29b00edeeb9a09e81899be1699ea901f6e812ecb5914b1\",\"license\":\"MIT\"},\"@aragon/govern-contract-utils/contracts/erc165/ERC165.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    MIT\\r\\n */\\r\\n\\r\\npragma solidity ^0.6.8;\\r\\n\\r\\nabstract contract ERC165 {\\r\\n    // Includes supportsInterface method:\\r\\n    bytes4 internal constant ERC165_INTERFACE_ID = bytes4(0x01ffc9a7);\\r\\n\\r\\n    /**\\r\\n    * @dev Query if a contract implements a certain interface\\r\\n    * @param _interfaceId The interface identifier being queried, as specified in ERC-165\\r\\n    * @return True if the contract implements the requested interface and if its not 0xffffffff, false otherwise\\r\\n    */\\r\\n    function supportsInterface(bytes4 _interfaceId) virtual public view returns (bool) {\\r\\n        return _interfaceId == ERC165_INTERFACE_ID;\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x74cd0ab82ececb712d9aba3719ce639fdec78c7f47dfc89e11b44d150e647624\",\"license\":\"MIT\"},\"@aragon/govern-contract-utils/contracts/erc20/ERC20.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    MIT\\r\\n */\\r\\n\\r\\npragma solidity ^0.6.8;\\r\\n\\r\\n/**\\r\\n * @title ERC20 interface\\r\\n * @dev see https://github.com/ethereum/EIPs/issues/20\\r\\n */\\r\\ninterface ERC20 {\\r\\n    // Optional fields \\r\\n    function name() external view returns (string memory);\\r\\n\\r\\n    function symbol() external view returns (string memory);\\r\\n\\r\\n    function decimals() external view returns (uint8);\\r\\n\\r\\n\\r\\n    function totalSupply() external view returns (uint256);\\r\\n\\r\\n    function balanceOf(address _who) external view returns (uint256);\\r\\n\\r\\n    function allowance(address _owner, address _spender) external view returns (uint256);\\r\\n\\r\\n    function transfer(address _to, uint256 _value) external returns (bool);\\r\\n\\r\\n    function approve(address _spender, uint256 _value) external returns (bool);\\r\\n\\r\\n    function transferFrom(address _from, address _to, uint256 _value) external returns (bool);\\r\\n\\r\\n    event Transfer(\\r\\n        address indexed from,\\r\\n        address indexed to,\\r\\n        uint256 value\\r\\n    );\\r\\n\\r\\n    event Approval(\\r\\n        address indexed owner,\\r\\n        address indexed spender,\\r\\n        uint256 value\\r\\n    );\\r\\n}\\r\\n\\r\\n\",\"keccak256\":\"0x53eea4087f951b7df7d046ac5c72c282452126367f5f31a95db5572be46a93d2\",\"license\":\"MIT\"},\"@aragon/govern-contract-utils/contracts/erc20/SafeERC20.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    MIT\\r\\n */\\r\\n\\r\\n// From https://github.com/aragon/aragonOS/blob/next/contracts/common/SafeERC20.sol\\r\\n\\r\\n// Inspired by AdEx (https://github.com/AdExNetwork/adex-protocol-eth/blob/b9df617829661a7518ee10f4cb6c4108659dd6d5/contracts/libs/SafeERC20.sol)\\r\\n// and 0x (https://github.com/0xProject/0x-monorepo/blob/737d1dc54d72872e24abce5a1dbe1b66d35fa21a/contracts/protocol/contracts/protocol/AssetProxy/ERC20Proxy.sol#L143)\\r\\n\\r\\npragma solidity ^0.6.8;\\r\\n\\r\\nimport \\\"../address-utils/AddressUtils.sol\\\";\\r\\n\\r\\nimport \\\"./ERC20.sol\\\";\\r\\n\\r\\nlibrary SafeERC20 {\\r\\n    using AddressUtils for address;\\r\\n\\r\\n    function invokeAndCheckSuccess(address _addr, bytes memory _calldata)\\r\\n        private\\r\\n        returns (bool ret)\\r\\n    {\\r\\n        if (!_addr.isContract()) {\\r\\n            return false;\\r\\n        }\\r\\n\\r\\n        assembly {\\r\\n            let ptr := mload(0x40)    // free memory pointer\\r\\n\\r\\n            let success := call(\\r\\n                gas(),                // forward all\\r\\n                _addr,                // address\\r\\n                0,                    // no value\\r\\n                add(_calldata, 0x20), // calldata start\\r\\n                mload(_calldata),     // calldata length\\r\\n                ptr,                  // write output over free memory\\r\\n                0x20                  // uint256 return\\r\\n            )\\r\\n\\r\\n            if gt(success, 0) {\\r\\n                // Check number of bytes returned from last function call\\r\\n                switch returndatasize()\\r\\n\\r\\n                // No bytes returned: assume success\\r\\n                case 0 {\\r\\n                    ret := 1\\r\\n                }\\r\\n\\r\\n                // 32 bytes returned: check if non-zero\\r\\n                case 0x20 {\\r\\n                    // Only return success if returned data was true\\r\\n                    // Already have output in ptr\\r\\n                    ret := iszero(iszero(mload(ptr)))\\r\\n                }\\r\\n\\r\\n                // Not sure what was returned: don't mark as success\\r\\n                default { }\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n    * @dev Same as a standards-compliant ERC20.transfer() that never reverts (returns false).\\r\\n    *      Note that this makes an external call to the token.\\r\\n    */\\r\\n    function safeTransfer(ERC20 _token, address _to, uint256 _amount) internal returns (bool) {\\r\\n        bytes memory transferCallData = abi.encodeWithSelector(\\r\\n            _token.transfer.selector,\\r\\n            _to,\\r\\n            _amount\\r\\n        );\\r\\n        return invokeAndCheckSuccess(address(_token), transferCallData);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n    * @dev Same as a standards-compliant ERC20.transferFrom() that never reverts (returns false).\\r\\n    *      Note that this makes an external call to the token.\\r\\n    */\\r\\n    function safeTransferFrom(ERC20 _token, address _from, address _to, uint256 _amount) internal returns (bool) {\\r\\n        bytes memory transferFromCallData = abi.encodeWithSelector(\\r\\n            _token.transferFrom.selector,\\r\\n            _from,\\r\\n            _to,\\r\\n            _amount\\r\\n        );\\r\\n        return invokeAndCheckSuccess(address(_token), transferFromCallData);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n    * @dev Same as a standards-compliant ERC20.approve() that never reverts (returns false).\\r\\n    *      Note that this makes an external call to the token.\\r\\n    */\\r\\n    function safeApprove(ERC20 _token, address _spender, uint256 _amount) internal returns (bool) {\\r\\n        bytes memory approveCallData = abi.encodeWithSelector(\\r\\n            _token.approve.selector,\\r\\n            _spender,\\r\\n            _amount\\r\\n        );\\r\\n        return invokeAndCheckSuccess(address(_token), approveCallData);\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x2430c0406ce8295916e0e94cbe34f7890db58588621ec9f7c7bc123cb91c75d5\",\"license\":\"MIT\"},\"@aragon/govern-contract-utils/contracts/initializable/Initializable.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    MIT\\r\\n */\\r\\n\\r\\npragma solidity 0.6.8;\\r\\n\\r\\ncontract Initializable {\\r\\n    mapping (string => uint256) public initBlocks;\\r\\n\\r\\n    event Initialized(string indexed key);\\r\\n\\r\\n    modifier onlyInit(string memory key) {\\r\\n        require(initBlocks[key] == 0, \\\"initializable: already initialized\\\");\\r\\n        initBlocks[key] = block.number;\\r\\n        _;\\r\\n        emit Initialized(key);\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x50f52ebb70ecf8cffcf83b01e20fc14744600ec0b17698267fdaf5ceb6565bbf\",\"license\":\"MIT\"},\"@aragon/govern-contract-utils/contracts/safe-math/SafeMath.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    GPL-3.0\\r\\n */\\r\\n\\r\\npragma solidity ^0.6.8;\\r\\n\\r\\n// A library for performing overflow-safe math, courtesy of DappHub: https://github.com/dapphub/ds-math/blob/d0ef6d6a5f/src/math.sol\\r\\n// Modified to include only the essentials\\r\\nlibrary SafeMath {\\r\\n    function add(uint256 x, uint256 y) internal pure returns (uint256 z) {\\r\\n        require((z = x + y) >= x, \\\"math: overflow\\\");\\r\\n    }\\r\\n\\r\\n    function sub(uint256 x, uint256 y) internal pure returns (uint256 z) {\\r\\n        require((z = x - y) <= x, \\\"math: underflow\\\");\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x27fad962c9484b7b0ce1866107fc18ba1518761fc9b2cb73fa8ded91ab8e12c9\",\"license\":\"GPL-3.0\"},\"contracts/pipelines/GovernQueue.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    GPL-3.0\\r\\n */\\r\\n\\r\\npragma solidity 0.6.8;\\r\\npragma experimental ABIEncoderV2; // required for passing structs in calldata (fairly secure at this point)\\r\\n\\r\\nimport \\\"erc3k/contracts/IERC3000.sol\\\";\\r\\n\\r\\nimport \\\"@aragon/govern-contract-utils/contracts/acl/ACL.sol\\\";\\r\\nimport \\\"@aragon/govern-contract-utils/contracts/adaptive-erc165/AdaptiveERC165.sol\\\";\\r\\nimport \\\"@aragon/govern-contract-utils/contracts/deposits/DepositLib.sol\\\";\\r\\nimport \\\"@aragon/govern-contract-utils/contracts/erc20/SafeERC20.sol\\\";\\r\\nimport '@aragon/govern-contract-utils/contracts/safe-math/SafeMath.sol';\\r\\n\\r\\nimport \\\"../protocol/IArbitrable.sol\\\";\\r\\nimport \\\"../protocol/IArbitrator.sol\\\";\\r\\n\\r\\nlibrary GovernQueueStateLib {\\r\\n    enum State {\\r\\n        None,\\r\\n        Scheduled,\\r\\n        Challenged,\\r\\n        Approved,\\r\\n        Rejected,\\r\\n        Cancelled,\\r\\n        Executed\\r\\n    }\\r\\n\\r\\n    struct Item {\\r\\n        State state;\\r\\n    }\\r\\n\\r\\n    function checkState(Item storage _item, State _requiredState) internal view {\\r\\n        require(_item.state == _requiredState, \\\"queue: bad state\\\");\\r\\n    }\\r\\n\\r\\n    function setState(Item storage _item, State _state) internal {\\r\\n        _item.state = _state;\\r\\n    }\\r\\n\\r\\n    function checkAndSetState(Item storage _item, State _fromState, State _toState) internal {\\r\\n        checkState(_item, _fromState);\\r\\n        setState(_item, _toState);\\r\\n    }\\r\\n}\\r\\n\\r\\ncontract GovernQueue is IERC3000, IArbitrable, AdaptiveERC165, ACL {\\r\\n    // Syntax sugar to enable method-calling syntax on types\\r\\n    using ERC3000Data for *;\\r\\n    using DepositLib for ERC3000Data.Collateral;\\r\\n    using GovernQueueStateLib for GovernQueueStateLib.Item;\\r\\n    using SafeERC20 for ERC20;\\r\\n    using SafeMath for uint256;\\r\\n\\r\\n    // Map '4' as the 'allow' ruling; this implicitly maps '3' as the 'reject' ruling\\r\\n    uint256 internal constant ALLOW_RULING = 4;\\r\\n\\r\\n    // Permanent state\\r\\n    bytes32 public configHash; // keccak256 hash of the current ERC3000Data.Config\\r\\n    uint256 public nonce; // number of scheduled payloads so far\\r\\n    mapping (bytes32 => GovernQueueStateLib.Item) public queue; // container hash -> execution state\\r\\n\\r\\n    // Temporary state\\r\\n    mapping (bytes32 => address) public challengerCache; // container hash -> challenger addr (used after challenging and before dispute resolution)\\r\\n    mapping (bytes32 => mapping (IArbitrator => uint256)) public disputeItemCache; // container hash -> arbitrator addr -> dispute id (used between dispute creation and ruling)\\r\\n\\r\\n    /**\\r\\n     * @param _aclRoot account that will be given root permissions on ACL (commonly given to factory)\\r\\n     * @param _initialConfig initial configuration parameters\\r\\n     */\\r\\n    constructor(address _aclRoot, ERC3000Data.Config memory _initialConfig)\\r\\n        public\\r\\n        ACL(_aclRoot) // note that this contract directly derives from ACL (ACL is local to contract and not global to system in Govern)\\r\\n    {\\r\\n        initialize(_aclRoot, _initialConfig);\\r\\n    }\\r\\n\\r\\n    function initialize(address _aclRoot, ERC3000Data.Config memory _initialConfig) public initACL(_aclRoot) onlyInit(\\\"queue\\\") {\\r\\n        _setConfig(_initialConfig);\\r\\n        _registerStandard(type(IERC3000).interfaceId);\\r\\n    }\\r\\n\\r\\n     /**\\r\\n     * @notice Schedules an action for execution, allowing for challenges and vetos on a defined time window. Pulls collateral from submitter into contract.\\r\\n     * @param _container A ERC3000Data.Container struct holding both the payload being scheduled for execution and\\r\\n     * the current configuration of the system\\r\\n     */\\r\\n    function schedule(ERC3000Data.Container memory _container) // TO FIX: Container is in memory and function has to be public to avoid an unestrutable solidity crash\\r\\n        public\\r\\n        override\\r\\n        auth(this.schedule.selector) // note that all functions in this contract are ACL protected (commonly some of them will be open for any addr to perform)\\r\\n        returns (bytes32 containerHash)\\r\\n    {\\r\\n        // prevent griefing by front-running (the same container is sent by two different people and one must be challenged)\\r\\n        // and ensure container hashes are unique\\r\\n        require(_container.payload.nonce == ++nonce, \\\"queue: bad nonce\\\");\\r\\n        // hash using ERC3000Data.hash(ERC3000Data.Config)\\r\\n        bytes32 _configHash = _container.config.hash();\\r\\n        // ensure that the hash of the config passed in the container matches the current config (implicit agreement approval by scheduler)\\r\\n        require(_configHash == configHash, \\\"queue: bad config\\\");\\r\\n        // ensure that the time delta to the execution timestamp provided in the payload is at least after the config's execution delay\\r\\n        require(_container.payload.executionTime >= _container.config.executionDelay.add(block.timestamp), \\\"queue: bad delay\\\");\\r\\n        // ensure that the submitter of the payload is also the sender of this call\\r\\n        require(_container.payload.submitter == msg.sender, \\\"queue: bad submitter\\\");\\r\\n        // Restrict the size of calldata to _container.config.maxCalldataSize to make sure challenge function stays callable\\r\\n        uint calldataSize;\\r\\n        assembly {\\r\\n            calldataSize := calldatasize()\\r\\n        }\\r\\n        require(calldataSize <= _container.config.maxCalldataSize, \\\"calldatasize: limit exceeded\\\");\\r\\n        // store and set container's hash\\r\\n        containerHash = ERC3000Data.containerHash(_container.payload.hash(), _configHash);\\r\\n        queue[containerHash].checkAndSetState(\\r\\n            GovernQueueStateLib.State.None, // ensure that the state for this container is None\\r\\n            GovernQueueStateLib.State.Scheduled // and if so perform a state transition to Scheduled\\r\\n        );\\r\\n        // we don't need to save any more state about the container in storage\\r\\n        // we just authenticate the hash and assign it a state, since all future\\r\\n        // actions regarding the container will need to provide it as a witness\\r\\n        // all witnesses are logged from this contract at least once, so the\\r\\n        // trust assumption should be the same as storing all on-chain (move complexity to clients)\\r\\n\\r\\n        ERC3000Data.Collateral memory collateral = _container.config.scheduleDeposit;\\r\\n        collateral.collectFrom(_container.payload.submitter); // pull collateral from submitter (requires previous approval)\\r\\n\\r\\n        // the configured resolver may specify additional out-of-band payments for scheduling actions\\r\\n        // schedule() leaves these requirements up to the callers of `schedule()` or other users to fulfill\\r\\n\\r\\n        // emit an event to ensure data availability of all state that cannot be otherwise fetched (see how config isn't emitted since an observer should already have it)\\r\\n        emit Scheduled(containerHash, _container.payload);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @notice Executes an action after its execution delay has passed and its state hasn't been altered by a challenge or veto\\r\\n     * @param _container A ERC3000Data.Container struct holding both the payload being scheduled for execution and\\r\\n     * the current configuration of the system\\r\\n     */\\r\\n    function execute(ERC3000Data.Container memory _container)\\r\\n        public\\r\\n        override\\r\\n        auth(this.execute.selector) // in most instances this will be open for any addr, but leaving configurable for flexibility\\r\\n        returns (bytes32 failureMap, bytes[] memory)\\r\\n    {\\r\\n        // ensure enough time has passed\\r\\n        require(block.timestamp >= _container.payload.executionTime, \\\"queue: wait more\\\");\\r\\n\\r\\n        bytes32 containerHash = _container.hash();\\r\\n        queue[containerHash].checkAndSetState(\\r\\n            GovernQueueStateLib.State.Scheduled, // note that we will revert here if the container wasn't previously scheduled\\r\\n            GovernQueueStateLib.State.Executed\\r\\n        );\\r\\n\\r\\n        _container.config.scheduleDeposit.releaseTo(_container.payload.submitter); // release collateral to original submitter\\r\\n\\r\\n        return _execute(_container.payload, containerHash);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @notice Challenge a container in case its scheduling is illegal as per Config.rules. Pulls collateral and dispute fees from sender into contract\\r\\n     * @param _container A ERC3000Data.Container struct holding both the payload being scheduled for execution and\\r\\n     * the current configuration of the system\\r\\n     * @param _reason Hint for case reviewers as to why the scheduled container is illegal\\r\\n     */\\r\\n    function challenge(ERC3000Data.Container memory _container, bytes memory _reason) auth(this.challenge.selector) override public returns (uint256 disputeId) {\\r\\n        bytes32 containerHash = _container.hash();\\r\\n        challengerCache[containerHash] = msg.sender; // cache challenger address while it is needed\\r\\n        queue[containerHash].checkAndSetState(\\r\\n            GovernQueueStateLib.State.Scheduled,\\r\\n            GovernQueueStateLib.State.Challenged\\r\\n        );\\r\\n\\r\\n        ERC3000Data.Collateral memory collateral = _container.config.challengeDeposit;\\r\\n        collateral.collectFrom(msg.sender); // pull challenge collateral from sender\\r\\n\\r\\n        // create dispute on arbitrator\\r\\n        IArbitrator arbitrator = IArbitrator(_container.config.resolver);\\r\\n        (address recipient, ERC20 feeToken, uint256 feeAmount) = arbitrator.getDisputeFees();\\r\\n        require(feeToken.safeTransferFrom(msg.sender, address(this), feeAmount), \\\"queue: bad fee pull\\\");\\r\\n        require(feeToken.safeApprove(recipient, feeAmount), \\\"queue: bad approve\\\");\\r\\n        disputeId = arbitrator.createDispute(2, abi.encode(_container)); // create dispute sending full container ABI encoded (could prob just send payload to save gas)\\r\\n        require(feeToken.safeApprove(recipient, 0), \\\"queue: bad reset\\\"); // reset just in case non-compliant tokens (that fail on non-zero to non-zero approvals) are used\\r\\n\\r\\n        // submit both arguments as evidence and close evidence period. no more evidence can be submitted and a settlement can't happen (could happen off-protocol)\\r\\n        arbitrator.submitEvidence(disputeId, _container.payload.submitter, _container.payload.proof);\\r\\n        arbitrator.submitEvidence(disputeId, msg.sender, _reason);\\r\\n        arbitrator.closeEvidencePeriod(disputeId);\\r\\n\\r\\n        disputeItemCache[containerHash][arbitrator] = disputeId + 1; // cache a relation between disputeId and containerHash while needed\\r\\n\\r\\n        emit Challenged(containerHash, msg.sender, _reason, disputeId, collateral);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @notice Apply arbitrator's ruling over a challenge once it has come to a final ruling\\r\\n     * @param _container A ERC3000Data.Container struct holding both the payload being scheduled for execution and\\r\\n     * the current configuration of the system\\r\\n     * @param _disputeId disputeId in the arbitrator in which the dispute over the container was created\\r\\n     */\\r\\n    function resolve(ERC3000Data.Container memory _container, uint256 _disputeId) override public returns (bytes32 failureMap, bytes[] memory) {\\r\\n        bytes32 containerHash = _container.hash();\\r\\n        IArbitrator arbitrator = IArbitrator(_container.config.resolver);\\r\\n\\r\\n        require(disputeItemCache[containerHash][arbitrator] == _disputeId + 1, \\\"queue: bad dispute id\\\");\\r\\n        delete disputeItemCache[containerHash][arbitrator]; // release state to refund gas; no longer needed in state\\r\\n\\r\\n        queue[containerHash].checkState(GovernQueueStateLib.State.Challenged);\\r\\n        (address subject, uint256 ruling) = arbitrator.rule(_disputeId);\\r\\n        require(subject == address(this), \\\"queue: not subject\\\");\\r\\n        bool arbitratorApproved = ruling == ALLOW_RULING;\\r\\n\\r\\n        queue[containerHash].setState(\\r\\n            arbitratorApproved\\r\\n              ? GovernQueueStateLib.State.Approved\\r\\n              : GovernQueueStateLib.State.Rejected\\r\\n        );\\r\\n\\r\\n        emit Resolved(containerHash, msg.sender, arbitratorApproved);\\r\\n        emit Ruled(arbitrator, _disputeId, ruling);\\r\\n\\r\\n        if (arbitratorApproved) {\\r\\n            return _executeApproved(_container);\\r\\n        } else {\\r\\n            return _settleRejection(_container);\\r\\n        }\\r\\n    }\\r\\n\\r\\n    function veto(ERC3000Data.Container memory _container, bytes memory _reason) auth(this.veto.selector) override public {\\r\\n        bytes32 containerHash = _container.hash();\\r\\n        GovernQueueStateLib.Item storage item = queue[containerHash];\\r\\n\\r\\n        if (item.state == GovernQueueStateLib.State.Challenged) {\\r\\n            item.checkAndSetState(\\r\\n                GovernQueueStateLib.State.Challenged,\\r\\n                GovernQueueStateLib.State.Cancelled\\r\\n            );\\r\\n\\r\\n            address challenger = challengerCache[containerHash];\\r\\n            // release state to refund gas; no longer needed in state\\r\\n            delete challengerCache[containerHash];\\r\\n            delete disputeItemCache[containerHash][IArbitrator(_container.config.resolver)];\\r\\n\\r\\n            // release collateral to challenger and scheduler\\r\\n            _container.config.scheduleDeposit.releaseTo(_container.payload.submitter);\\r\\n            _container.config.challengeDeposit.releaseTo(challenger);\\r\\n        } else {\\r\\n            // If the given container doesn't have the state Challenged\\r\\n            // has it to be the Scheduled state and otherwise should it throw as expected\\r\\n            item.checkAndSetState(\\r\\n                GovernQueueStateLib.State.Scheduled,\\r\\n                GovernQueueStateLib.State.Cancelled\\r\\n            );\\r\\n\\r\\n            _container.config.scheduleDeposit.releaseTo(_container.payload.submitter);\\r\\n        }\\r\\n\\r\\n        emit Vetoed(containerHash, msg.sender, _reason);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @notice Apply a new configuration for all *new* containers to be scheduled\\r\\n     * @param _config A ERC3000Data.Config struct holding all the new params that will control the queue\\r\\n     */\\r\\n    function configure(ERC3000Data.Config memory _config)\\r\\n        public\\r\\n        override\\r\\n        auth(this.configure.selector)\\r\\n        returns (bytes32)\\r\\n    {\\r\\n        return _setConfig(_config);\\r\\n    }\\r\\n\\r\\n    // Internal\\r\\n\\r\\n    function _executeApproved(ERC3000Data.Container memory _container) internal returns (bytes32 failureMap, bytes[] memory) {\\r\\n        bytes32 containerHash = _container.hash();\\r\\n        queue[containerHash].checkAndSetState(\\r\\n            GovernQueueStateLib.State.Approved,\\r\\n            GovernQueueStateLib.State.Executed\\r\\n        );\\r\\n\\r\\n        delete challengerCache[containerHash]; // release state to refund gas; no longer needed in state\\r\\n\\r\\n        // release all collateral to submitter\\r\\n        _container.config.scheduleDeposit.releaseTo(_container.payload.submitter);\\r\\n        _container.config.challengeDeposit.releaseTo(_container.payload.submitter);\\r\\n\\r\\n        return _execute(_container.payload, containerHash);\\r\\n    }\\r\\n\\r\\n    function _settleRejection(ERC3000Data.Container memory _container) internal returns (bytes32, bytes[] memory) {\\r\\n        bytes32 containerHash = _container.hash();\\r\\n        queue[containerHash].checkAndSetState(\\r\\n            GovernQueueStateLib.State.Rejected,\\r\\n            GovernQueueStateLib.State.Cancelled\\r\\n        );\\r\\n\\r\\n        address challenger = challengerCache[containerHash];\\r\\n        delete challengerCache[containerHash]; // release state to refund gas; no longer needed in state\\r\\n\\r\\n        // release all collateral to challenger\\r\\n        _container.config.scheduleDeposit.releaseTo(challenger);\\r\\n        _container.config.challengeDeposit.releaseTo(challenger);\\r\\n\\r\\n        // return zero values as nothing is executed on rejection\\r\\n    }\\r\\n\\r\\n    function _execute(ERC3000Data.Payload memory _payload, bytes32 _containerHash) internal returns (bytes32, bytes[] memory) {\\r\\n        emit Executed(_containerHash, msg.sender);\\r\\n        return _payload.executor.exec(_payload.actions, _payload.allowFailuresMap, _containerHash);\\r\\n    }\\r\\n\\r\\n    function _setConfig(ERC3000Data.Config memory _config)\\r\\n        internal\\r\\n        returns (bytes32)\\r\\n    {\\r\\n        // validate collaterals by calling balanceOf on their interface\\r\\n        if(_config.challengeDeposit.amount != 0 && _config.challengeDeposit.token != address(0)) {\\r\\n            (bool ok, bytes memory value) = _config.challengeDeposit.token.call(\\r\\n                abi.encodeWithSelector(ERC20.balanceOf.selector, address(this))\\r\\n            );\\r\\n            require(ok && value.length > 0, \\\"queue: bad config\\\");\\r\\n        }\\r\\n\\r\\n        if(_config.scheduleDeposit.amount != 0 && _config.scheduleDeposit.token != address(0)) {\\r\\n            (bool ok, bytes memory value) = _config.scheduleDeposit.token.call(\\r\\n                abi.encodeWithSelector(ERC20.balanceOf.selector, address(this))\\r\\n            );\\r\\n            require(ok && value.length > 0, \\\"queue: bad config\\\");\\r\\n        }\\r\\n        \\r\\n        configHash = _config.hash();\\r\\n\\r\\n        emit Configured(configHash, msg.sender, _config);\\r\\n\\r\\n        return configHash;\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x22acbe057b83c84f9b558e2fbd04dcbe976ab9b96d7f72b89fa2ca1a2576acb3\",\"license\":\"GPL-3.0\"},\"contracts/protocol/IArbitrable.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    MIT\\r\\n */\\r\\n\\r\\n// From https://github.com/aragon/protocol/blob/f1b3361a160da92b9bb449c0a05dee0c30e41594/packages/evm/contracts/arbitration/IArbitrable.sol\\r\\n\\r\\npragma solidity ^0.6.8;\\r\\n\\r\\nimport \\\"./IArbitrator.sol\\\";\\r\\n\\r\\n/**\\r\\n* @dev The Arbitrable instances actually don't require to follow any specific interface.\\r\\n*      Note that this is actually optional, although it does allow the Protocol to at least have a way to identify a specific set of instances.\\r\\n*/\\r\\nabstract contract IArbitrable {\\r\\n    /**\\r\\n    * @dev Emitted when an IArbitrable instance's dispute is ruled by an IArbitrator\\r\\n    * @param arbitrator IArbitrator instance ruling the dispute\\r\\n    * @param disputeId Identification number of the dispute being ruled by the arbitrator\\r\\n    * @param ruling Ruling given by the arbitrator\\r\\n    */\\r\\n    event Ruled(IArbitrator indexed arbitrator, uint256 indexed disputeId, uint256 ruling);\\r\\n}\\r\\n\",\"keccak256\":\"0xc1d6d10d63c3ddae0e54a0f9ddac4346f9aa17c6cf94038f411f86e318c19825\",\"license\":\"MIT\"},\"contracts/protocol/IArbitrator.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    MIT\\r\\n */\\r\\n\\r\\n// From https://github.com/aragon/protocol/blob/f1b3361a160da92b9bb449c0a05dee0c30e41594/packages/evm/contracts/arbitration/IArbitrator.sol\\r\\n\\r\\npragma solidity ^0.6.8;\\r\\n\\r\\nimport \\\"@aragon/govern-contract-utils/contracts/erc20/ERC20.sol\\\";\\r\\n\\r\\ninterface IArbitrator {\\r\\n    /**\\r\\n    * @dev Create a dispute over the Arbitrable sender with a number of possible rulings\\r\\n    * @param _possibleRulings Number of possible rulings allowed for the dispute\\r\\n    * @param _metadata Optional metadata that can be used to provide additional information on the dispute to be created\\r\\n    * @return Dispute identification number\\r\\n    */\\r\\n    function createDispute(uint256 _possibleRulings, bytes calldata _metadata) external returns (uint256);\\r\\n\\r\\n    /**\\r\\n    * @dev Submit evidence for a dispute\\r\\n    * @param _disputeId Id of the dispute in the Protocol\\r\\n    * @param _submitter Address of the account submitting the evidence\\r\\n    * @param _evidence Data submitted for the evidence related to the dispute\\r\\n    */\\r\\n    function submitEvidence(uint256 _disputeId, address _submitter, bytes calldata _evidence) external;\\r\\n\\r\\n    /**\\r\\n    * @dev Close the evidence period of a dispute\\r\\n    * @param _disputeId Identification number of the dispute to close its evidence submitting period\\r\\n    */\\r\\n    function closeEvidencePeriod(uint256 _disputeId) external;\\r\\n\\r\\n    /**\\r\\n    * @notice Rule dispute #`_disputeId` if ready\\r\\n    * @param _disputeId Identification number of the dispute to be ruled\\r\\n    * @return subject Subject associated to the dispute\\r\\n    * @return ruling Ruling number computed for the given dispute\\r\\n    */\\r\\n    function rule(uint256 _disputeId) external returns (address subject, uint256 ruling);\\r\\n\\r\\n    /**\\r\\n    * @dev Tell the dispute fees information to create a dispute\\r\\n    * @return recipient Address where the corresponding dispute fees must be transferred to\\r\\n    * @return feeToken ERC20 token used for the fees\\r\\n    * @return feeAmount Total amount of fees that must be allowed to the recipient\\r\\n    */\\r\\n    function getDisputeFees() external view returns (address recipient, ERC20 feeToken, uint256 feeAmount);\\r\\n\\r\\n    /**\\r\\n    * @dev Tell the payments recipient address\\r\\n    * @return Address of the payments recipient module\\r\\n    */\\r\\n    function getPaymentsRecipient() external view returns (address);\\r\\n}\\r\\n\",\"keccak256\":\"0xbd3a8516ceb57f7ba6a10bc785176896d5411a8a57c91bc7756dd5592fc3bc18\",\"license\":\"MIT\"},\"erc3k/contracts/ERC3000Data.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    MIT\\r\\n */\\r\\n\\r\\npragma solidity ^0.6.8;\\r\\npragma experimental ABIEncoderV2;\\r\\n\\r\\nimport \\\"./IERC3000Executor.sol\\\";\\r\\n\\r\\nlibrary ERC3000Data {\\r\\n    // TODO: come up with a non-shitty name\\r\\n    struct Container {\\r\\n        Payload payload;\\r\\n        Config config;\\r\\n    }\\r\\n\\r\\n    // WARN: Always remember to change the 'hash' function if modifying the struct\\r\\n    struct Payload {\\r\\n        uint256 nonce;\\r\\n        uint256 executionTime;\\r\\n        address submitter;\\r\\n        IERC3000Executor executor;\\r\\n        Action[] actions;\\r\\n        bytes32 allowFailuresMap;\\r\\n        bytes proof;\\r\\n    }\\r\\n\\r\\n    struct Action {\\r\\n        address to;\\r\\n        uint256 value;\\r\\n        bytes data;\\r\\n    }\\r\\n\\r\\n    struct Config {\\r\\n        uint256 executionDelay; // how many seconds to wait before being able to call `execute`.\\r\\n        Collateral scheduleDeposit; // fees for scheduling\\r\\n        Collateral challengeDeposit; // fees for challenging\\r\\n        address resolver;  // resolver that will rule the disputes\\r\\n        bytes rules; // rules of how DAO should be managed\\r\\n        uint256 maxCalldataSize; // max calldatasize for the schedule\\r\\n    }\\r\\n\\r\\n    struct Collateral {\\r\\n        address token;\\r\\n        uint256 amount;\\r\\n    }\\r\\n\\r\\n    function containerHash(bytes32 payloadHash, bytes32 configHash) internal view returns (bytes32) {\\r\\n        uint chainId;\\r\\n        assembly {\\r\\n            chainId := chainid()\\r\\n        }\\r\\n\\r\\n        return keccak256(abi.encodePacked(\\\"erc3k-v1\\\", address(this), chainId, payloadHash, configHash));\\r\\n    }\\r\\n\\r\\n    function hash(Container memory container) internal view returns (bytes32) {\\r\\n        return containerHash(hash(container.payload), hash(container.config));\\r\\n    }\\r\\n\\r\\n    function hash(Payload memory payload) internal pure returns (bytes32) {\\r\\n        return keccak256(\\r\\n            abi.encode(\\r\\n                payload.nonce,\\r\\n                payload.executionTime,\\r\\n                payload.submitter,\\r\\n                payload.executor,\\r\\n                keccak256(abi.encode(payload.actions)),\\r\\n                payload.allowFailuresMap,\\r\\n                keccak256(payload.proof)\\r\\n            )\\r\\n        );\\r\\n    }\\r\\n\\r\\n    function hash(Config memory config) internal pure returns (bytes32) {\\r\\n        return keccak256(abi.encode(config));\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x7c810807997ef90b050e7ac0078194babf16e2d43f486baa05d7848f7550bdcc\",\"license\":\"MIT\"},\"erc3k/contracts/IERC3000.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    MIT\\r\\n */\\r\\n\\r\\npragma solidity ^0.6.8;\\r\\npragma experimental ABIEncoderV2;\\r\\n\\r\\nimport \\\"./ERC3000Data.sol\\\";\\r\\n\\r\\nabstract contract IERC3000 {\\r\\n    /**\\r\\n     * @notice Schedules an action for execution, allowing for challenges and vetos on a defined time window\\r\\n     * @param container A Container struct holding both the payload being scheduled for execution and\\r\\n     * the current configuration of the system\\r\\n     * @return containerHash\\r\\n     */\\r\\n    function schedule(ERC3000Data.Container memory container) virtual public returns (bytes32 containerHash);\\r\\n    event Scheduled(bytes32 indexed containerHash, ERC3000Data.Payload payload);\\r\\n\\r\\n    /**\\r\\n     * @notice Executes an action after its execution delay has passed and its state hasn't been altered by a challenge or veto\\r\\n     * @param container A ERC3000Data.Container struct holding both the payload being scheduled for execution and\\r\\n     * the current configuration of the system\\r\\n     * MUST be an ERC3000Executor call: payload.executor.exec(payload.actions)\\r\\n     * @return failureMap\\r\\n     * @return execResults\\r\\n     */\\r\\n    function execute(ERC3000Data.Container memory container) virtual public returns (bytes32 failureMap, bytes[] memory execResults);\\r\\n    event Executed(bytes32 indexed containerHash, address indexed actor);\\r\\n\\r\\n    /**\\r\\n     * @notice Challenge a container in case its scheduling is illegal as per Config.rules. Pulls collateral and dispute fees from sender into contract\\r\\n     * @param container A ERC3000Data.Container struct holding both the payload being scheduled for execution and\\r\\n     * the current configuration of the system\\r\\n     * @param reason Hint for case reviewers as to why the scheduled container is illegal\\r\\n     * @return resolverId\\r\\n     */\\r\\n    function challenge(ERC3000Data.Container memory container, bytes memory reason) virtual public returns (uint256 resolverId);\\r\\n    event Challenged(bytes32 indexed containerHash, address indexed actor, bytes reason, uint256 resolverId, ERC3000Data.Collateral collateral);\\r\\n\\r\\n    /**\\r\\n     * @notice Apply arbitrator's ruling over a challenge once it has come to a final ruling\\r\\n     * @param container A ERC3000Data.Container struct holding both the payload being scheduled for execution and\\r\\n     * the current configuration of the system\\r\\n     * @param resolverId disputeId in the arbitrator in which the dispute over the container was created\\r\\n     * @return failureMap\\r\\n     * @return execResults\\r\\n     */\\r\\n    function resolve(ERC3000Data.Container memory container, uint256 resolverId) virtual public returns (bytes32 failureMap, bytes[] memory execResults);\\r\\n    event Resolved(bytes32 indexed containerHash, address indexed actor, bool approved);\\r\\n\\r\\n    /**\\r\\n     * @notice Apply arbitrator's ruling over a challenge once it has come to a final ruling\\r\\n     * @param container A ERC3000Data.Container struct holding both the payload being scheduled for execution and\\r\\n     * the current configuration of the system\\r\\n     * @param reason Justification for the veto\\r\\n     */\\r\\n    function veto(ERC3000Data.Container memory container, bytes memory reason) virtual public;\\r\\n    event Vetoed(bytes32 indexed containerHash, address indexed actor, bytes reason);\\r\\n\\r\\n    /**\\r\\n     * @notice Apply a new configuration for all *new* containers to be scheduled\\r\\n     * @param config A ERC3000Data.Config struct holding all the new params that will control the system\\r\\n     * @return configHash\\r\\n     */\\r\\n    function configure(ERC3000Data.Config memory config) virtual public returns (bytes32 configHash);\\r\\n    event Configured(bytes32 indexed configHash, address indexed actor, ERC3000Data.Config config);\\r\\n}\\r\\n\",\"keccak256\":\"0x63434aa74e50d56a4196c819744211b6737a2916a8b14acc3d2d77744a59676d\",\"license\":\"MIT\"},\"erc3k/contracts/IERC3000Executor.sol\":{\"content\":\"/*\\r\\n * SPDX-License-Identifier:    MIT\\r\\n */\\r\\n\\r\\npragma solidity ^0.6.8;\\r\\npragma experimental ABIEncoderV2;\\r\\n\\r\\nimport \\\"./ERC3000Data.sol\\\";\\r\\n\\r\\nabstract contract IERC3000Executor {\\r\\n    bytes4 internal constant ERC3000_EXEC_INTERFACE_ID = this.exec.selector;\\r\\n\\r\\n    /**\\r\\n     * @notice Executes all given actions\\r\\n     * @param actions A array of ERC3000Data.Action for later executing those\\r\\n     * @param allowFailuresMap A map with the allowed failures\\r\\n     * @param memo The hash of the ERC3000Data.Container\\r\\n     * @return failureMap\\r\\n     * @return execResults\\r\\n     */\\r\\n    function exec(ERC3000Data.Action[] memory actions, bytes32 allowFailuresMap, bytes32 memo) virtual public returns (bytes32 failureMap, bytes[] memory execResults);\\r\\n    event Executed(address indexed actor, ERC3000Data.Action[] actions, bytes32 memo, bytes32 failureMap, bytes[] execResults);\\r\\n}\\r\\n\",\"keccak256\":\"0xe124eb06798a1d2457d8e9bad5ae55abd63e6d7d9d4babb7408df67e8e8357b3\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60806040523480156200001157600080fd5b50604051620040e0380380620040e0833981016040819052620000349162000858565b81806002604051620000469062000968565b90815260200160405180910390205460001415620000785762000072816001600160e01b03620000ec16565b620000cc565b6001600160a01b038181166000908152600080516020620040a0833981519152602052604090205416600214620000cc5760405162461bcd60e51b8152600401620000c39062000a32565b60405180910390fd5b50620000e4905082826001600160e01b03620001bd16565b505062000b9b565b604051806040016040528060038152602001621858db60ea1b8152506002816040516200011a91906200094a565b9081526020016040518091039020546000146200014b5760405162461bcd60e51b8152600401620000c390620009f0565b436002826040516200015e91906200094a565b908152604051908190036020019020556200018a63161b7d8160e21b836001600160e01b036200033416565b806040516200019a91906200094a565b60405190819003812090600080516020620040c083398151915290600090a25050565b816002604051620001ce9062000968565b908152602001604051809103902054600014156200020057620001fa816001600160e01b03620000ec16565b6200024b565b6001600160a01b038181166000908152600080516020620040a08339815191526020526040902054166002146200024b5760405162461bcd60e51b8152600401620000c39062000a32565b60405180604001604052806005815260200164717565756560d81b8152506002816040516200027b91906200094a565b908152602001604051809103902054600014620002ac5760405162461bcd60e51b8152600401620000c390620009f0565b43600282604051620002bf91906200094a565b90815260405190819003602001902055620002e3836001600160e01b036200034f16565b50620002ff63d311828160e01b6001600160e01b03620005de16565b806040516200030f91906200094a565b60405190819003812090600080516020620040c083398151915290600090a250505050565b6200034b828260026001600160e01b036200063f16565b5050565b60008160400151602001516000141580156200037857506040820151516001600160a01b031615155b156200046957600060608360400151600001516001600160a01b03166370a0823160e01b30604051602401620003af919062000977565b60408051601f198184030181529181526020820180516001600160e01b03166001600160e01b0319909416939093179092529051620003ef91906200094a565b6000604051808303816000865af19150503d80600081146200042e576040519150601f19603f3d011682016040523d82523d6000602084013e62000433565b606091505b509150915081801562000447575060008151115b620004665760405162461bcd60e51b8152600401620000c390620009a0565b50505b6020808301510151158015906200048d57506020820151516001600160a01b031615155b156200057e57600060608360200151600001516001600160a01b03166370a0823160e01b30604051602401620004c4919062000977565b60408051601f198184030181529181526020820180516001600160e01b03166001600160e01b03199094169390931790925290516200050491906200094a565b6000604051808303816000865af19150503d806000811462000543576040519150601f19603f3d011682016040523d82523d6000602084013e62000548565b606091505b50915091508180156200055c575060008151115b6200057b5760405162461bcd60e51b8152600401620000c390620009a0565b50505b62000594826200072960201b620014e71760201c565b60048190556040513391907f844435c59f7ccdf12de134e8f9b3b7d664fe9f06e3263680779599ba4097bc3f90620005ce90869062000a92565b60405180910390a3505060045490565b6001600160e01b0319811660009081526020819052604090819020805460ff19166001179055517fbf5e1f87f5ab65b58074cd29244d7c487a948983cda4b932e0f966b62bd34aca90620006349083906200098b565b60405180910390a150565b62000653836001600160e01b036200075b16565b15620006735760405162461bcd60e51b8152600401620000c390620009cb565b6001600160a01b03821660011415620006a05760405162461bcd60e51b8152600401620000c39062000a69565b6001600160e01b0319831660008181526003602090815260408083206001600160a01b03878116808652919093529281902080546001600160a01b0319169286169290921790915551909133917fc62063b81f7036fd97a0dc546516e99f11004d2d76ca0fddd3866346c86e7091906200071c90869062000977565b60405180910390a4505050565b6000816040516020016200073e919062000a92565b604051602081830303815290604052805190602001209050919050565b6001600160e01b031916600090815260036020908152604080832060018085529252909120546001600160a01b03161490565b80516001600160a01b0381168114620007a657600080fd5b92915050565b600082601f830112620007bd578081fd5b81516001600160401b03811115620007d3578182fd5b620007e8601f8201601f191660200162000b28565b91508082528360208285010111156200080057600080fd5b6200081381602084016020860162000b4f565b5092915050565b6000604082840312156200082c578081fd5b62000838604062000b28565b90506200084683836200078e565b81526020820151602082015292915050565b600080604083850312156200086b578182fd5b8251620008788162000b82565b60208401519092506001600160401b038082111562000895578283fd5b8185016101008188031215620008a9578384fd5b620008b560c062000b28565b925080518352620008ca87602083016200081a565b6020840152620008de87606083016200081a565b6040840152620008f28760a083016200078e565b606084015260c08101518281111562000909578485fd5b6200091788828401620007ac565b60808501525060e0015160a083015250919491935090915050565b80516001600160a01b03168252602090810151910152565b600082516200095e81846020870162000b4f565b9190910192915050565b621858db60ea1b815260030190565b6001600160a01b0391909116815260200190565b6001600160e01b031991909116815260200190565b60208082526011908201527071756575653a2062616420636f6e66696760781b604082015260600190565b6020808252600b908201526a30b1b61d10333937bd32b760a91b604082015260600190565b60208082526022908201527f696e697469616c697a61626c653a20616c726561647920696e697469616c697a604082015261195960f21b606082015260800190565b6020808252601c908201527f61636c3a20696e697469616c20726f6f74206d6973616c69676e656400000000604082015260600190565b6020808252600f908201526e61636c3a2062616420667265657a6560881b604082015260600190565b60006020825282516020830152602083015162000ab3604084018262000932565b50604083015162000ac8608084018262000932565b5060608301516001600160a01b031660c0830152608083015161010060e084018190528151610120850181905262000b098161014087016020860162000b4f565b60a09590950151908401525050601f91909101601f1916016101400190565b6040518181016001600160401b038111828210171562000b4757600080fd5b604052919050565b60005b8381101562000b6c57818101518382015260200162000b52565b8381111562000b7c576000848401525b50505050565b6001600160a01b038116811462000b9857600080fd5b50565b6134f58062000bab6000396000f3fe608060405234801561001057600080fd5b50600436106101825760003560e01c80637e8c7f08116100d8578063affed0e01161008c578063c832048011610066578063c832048014610334578063cc1d4cab14610347578063e1f1176d1461035a57610182565b8063affed0e014610306578063bdf9a7261461030e578063c8182af01461032157610182565b806396fc8abd116100bd57806396fc8abd146102c0578063a157a10d146102e0578063a2157227146102f357610182565b80637e8c7f08146102985780638f8b35b2146102ad57610182565b80633e2da6a91161013a5780635a08160b116101145780635a08160b146102525780637744efda146102655780637c10dea61461027857610182565b80633e2da6a914610219578063495a98251461022c578063588497341461023f57610182565b80631c47671b1161016b5780631c47671b146101d15780631f13405b146101e65780633da956aa1461020657610182565b806301ffc9a71461018757806314d56921146101b0575b600080fd5b61019a610195366004612875565b610362565b6040516101a79190612d7c565b60405180910390f35b6101c36101be366004612a50565b610394565b6040516101a7929190612d90565b6101e46101df36600461270b565b6105cb565b005b6101f96101f43660046129f9565b6106ec565b6040516101a79190612d87565b6101c36102143660046129c6565b610b89565b6101f9610227366004612846565b610c7e565b61019a61023a366004612875565b610c9b565b6101e461024d366004612891565b610cce565b6101e46102603660046129f9565b610d43565b6101f9610273366004612993565b610efc565b61028b610286366004612798565b610f74565b6040516101a79190612e98565b6102a0610f89565b6040516101a79190612e16565b6101e46102bb366004612690565b610f94565b6102d36102ce366004612891565b61112d565b6040516101a79190612cf3565b6101e46102ee366004612891565b611153565b6101e46103013660046128be565b6111c3565b6101f9611234565b6101e461031c366004612875565b61123a565b6102d361032f366004612798565b6112ad565b6101f96103423660046129c6565b6112c8565b6101f9610355366004612908565b6114c4565b6101f96114e1565b6001600160e01b0319811660009081526020819052604081205460ff168061038e575061038e82611517565b92915050565b6000606060006103a385611549565b6020808701516060015160008381526008835260408082206001600160a01b038416835290935291909120549192509060018601146103fd5760405162461bcd60e51b81526004016103f490612fa1565b60405180910390fd5b60008281526008602090815260408083206001600160a01b038516845282528083208390558483526006909152902061043d90600263ffffffff61156d16565b600080826001600160a01b031663db18af6c886040518263ffffffff1660e01b815260040161046c9190612d87565b6040805180830381600087803b15801561048557600080fd5b505af1158015610499573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906104bd91906126de565b90925090506001600160a01b03821630146104ea5760405162461bcd60e51b81526004016103f490613224565b6004811461051a816104fd576004610500565b60035b60008781526006602052604090209063ffffffff6115a616565b336001600160a01b0316857f027d8a5d945eb361475964ed2c71b8332b27af2d630ab5daf829d67afd2584e6836040516105549190612d7c565b60405180910390a387846001600160a01b03167f56c8631a8915c0d362dbe57a61215fdde954f73f81c8a3a1f55572fb015207b1846040516105969190612d87565b60405180910390a380156105bb576105ad896115c7565b9650965050505050506105c4565b6105ad8961167d565b9250929050565b60408051602036601f810182900482028301820190935282825263161b7d8160e21b9261061592849233926000918190840183828082843760009201919091525061172292505050565b6106315760405162461bcd60e51b81526004016103f490612f6a565b60005b828110156106e6576106446122d2565b84848381811061065057fe5b905060600201803603810190610666919061293b565b905060008151600281111561067757fe5b14156106945761068f81602001518260400151611768565b6106dd565b6001815160028111156106a357fe5b14156106bb5761068f81602001518260400151611774565b6002815160028111156106ca57fe5b14156106dd576106dd8160200151611812565b50600101610634565b50505050565b6000631f13405b60e01b61073881336000368080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525061172292505050565b6107545760405162461bcd60e51b81526004016103f490612f6a565b600061075f85611549565b6000818152600760209081526040808320805473ffffffffffffffffffffffffffffffffffffffff191633179055600690915290209091506107aa906001600263ffffffff6118a716565b6107b26122f4565b506020850151604001516107cc813363ffffffff6118bb16565b600086602001516060015190506000806000836001600160a01b0316637b751b9e6040518163ffffffff1660e01b815260040160606040518083038186803b15801561081757600080fd5b505afa15801561082b573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061084f919061264e565b919450925090506108716001600160a01b03831633308463ffffffff61195e16565b61088d5760405162461bcd60e51b81526004016103f49061307d565b6108a76001600160a01b038316848363ffffffff6119dc16565b6108c35760405162461bcd60e51b81526004016103f490613122565b836001600160a01b031663c13517e160028c6040516020016108e5919061334a565b6040516020818303038152906040526040518363ffffffff1660e01b8152600401610911929190612eac565b602060405180830381600087803b15801561092b57600080fd5b505af115801561093f573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906109639190612a93565b97506109806001600160a01b03831684600063ffffffff6119dc16565b61099c5760405162461bcd60e51b81526004016103f490613046565b895160408082015160c09092015190517f7cb57c640000000000000000000000000000000000000000000000000000000081526001600160a01b03871692637cb57c64926109f0928d929190600401613396565b600060405180830381600087803b158015610a0a57600080fd5b505af1158015610a1e573d6000803e3d6000fd5b50506040517f7cb57c640000000000000000000000000000000000000000000000000000000081526001600160a01b0387169250637cb57c649150610a6b908b9033908e90600401613396565b600060405180830381600087803b158015610a8557600080fd5b505af1158015610a99573d6000803e3d6000fd5b50506040517f7e9adccf0000000000000000000000000000000000000000000000000000000081526001600160a01b0387169250637e9adccf9150610ae2908b90600401612d87565b600060405180830381600087803b158015610afc57600080fd5b505af1158015610b10573d6000803e3d6000fd5b50505060008781526008602090815260408083206001600160a01b03891684529091529081902060018b0190555133915087907f429df837eb45b6713f725a0d3e57db939fd7dd7d58bb3cd967fa37091572db9f90610b74908d908d908b90612e70565b60405180910390a35050505050505092915050565b60006060633da956aa60e01b610bd781336000368080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525061172292505050565b610bf35760405162461bcd60e51b81526004016103f490612f6a565b835160200151421015610c185760405162461bcd60e51b81526004016103f4906131b6565b6000610c2385611549565b6000818152600660208190526040909120919250610c4a919060019063ffffffff6118a716565b8451604001516020808701510151610c679163ffffffff611a5716565b8451610c739082611aeb565b935093505050915091565b600860209081526000928352604080842090915290825290205481565b6001600160e01b031916600090815260036020908152604080832060018085529252909120546001600160a01b03161490565b60408051602036601f810182900482028301820190935282825263161b7d8160e21b92610d1892849233926000918190840183828082843760009201919091525061172292505050565b610d345760405162461bcd60e51b81526004016103f490612f6a565b610d3e8383611774565b505050565b635a08160b60e01b610d8d81336000368080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525061172292505050565b610da95760405162461bcd60e51b81526004016103f490612f6a565b6000610db484611549565b60008181526006602052604090209091506002815460ff166006811115610dd757fe5b1415610e8357610df0816002600563ffffffff6118a716565b6000828152600760209081526040808320805473ffffffffffffffffffffffffffffffffffffffff198116909155600883528184208984018051606001516001600160a01b03908116875291855283862095909555895190920151935190920151911691610e64919063ffffffff611a5716565b602086015160400151610e7d908263ffffffff611a5716565b50610eb3565b610e96816001600563ffffffff6118a716565b8451604001516020808701510151610eb39163ffffffff611a5716565b336001600160a01b0316827fe2530b9681f9726904f9ca7fe725c0c53ea1b72370981ac6a5beaa9758c8c35686604051610eed9190612e5d565b60405180910390a35050505050565b6000637744efda60e01b610f4881336000368080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525061172292505050565b610f645760405162461bcd60e51b81526004016103f490612f6a565b610f6d83611bba565b9392505050565b60066020526000908152604090205460ff1681565b63161b7d8160e21b81565b816002604051610fa390612c62565b90815260200160405180910390205460001415610fc857610fc381611e4c565b611021565b6001600160a01b0381811660009081527fd87da3e1f08043464b74e6b0861ccd8d8a5174e228287ac9b9f6efc1673da4ec6020526040902054166002146110215760405162461bcd60e51b81526004016103f490613292565b6040518060400160405280600581526020017f71756575650000000000000000000000000000000000000000000000000000008152506002816040516110679190612c46565b9081526020016040518091039020546000146110955760405162461bcd60e51b81526004016103f490613159565b436002826040516110a69190612c46565b908152604051908190036020019020556110bf83611bba565b506110e97fd311828100000000000000000000000000000000000000000000000000000000611f34565b806040516110f79190612c46565b604051908190038120907f7bc2a48a4a566e237a12186f19d985b0f76afc9d5290601edac19876253670c290600090a250505050565b60036020908152600092835260408084209091529082529020546001600160a01b031681565b60408051602036601f810182900482028301820190935282825263161b7d8160e21b9261119d92849233926000918190840183828082843760009201919091525061172292505050565b6111b95760405162461bcd60e51b81526004016103f490612f6a565b610d3e8383611768565b60408051602036601f810182900482028301820190935282825263161b7d8160e21b9261120d92849233926000918190840183828082843760009201919091525061172292505050565b6112295760405162461bcd60e51b81526004016103f490612f6a565b6106e6848484611f93565b60055481565b60408051602036601f810182900482028301820190935282825263161b7d8160e21b9261128492849233926000918190840183828082843760009201919091525061172292505050565b6112a05760405162461bcd60e51b81526004016103f490612f6a565b6112a982611812565b5050565b6007602052600090815260409020546001600160a01b031681565b600063c832048060e01b61131481336000368080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525061172292505050565b6113305760405162461bcd60e51b81526004016103f490612f6a565b60058054600101908190558351511461135b5760405162461bcd60e51b81526004016103f490612fd8565b600061136a84602001516114e7565b9050600454811461138d5760405162461bcd60e51b81526004016103f490612f33565b6020840151516113a3904263ffffffff61207716565b84516020015110156113c75760405162461bcd60e51b81526004016103f49061300f565b8351604001516001600160a01b031633146113f45760405162461bcd60e51b81526004016103f4906130b4565b602084015160a00151369081111561141e5760405162461bcd60e51b81526004016103f49061325b565b61143461142e866000015161209a565b83612102565b60008181526006602052604081209195506114579190600163ffffffff6118a716565b61145f6122f4565b50602080860151015185516040015161147f90829063ffffffff6118bb16565b847f67f87ff46443c95843c7bd72a026dd23ba0015528ce9f8f15c5c6917645034ef87600001516040516114b39190613383565b60405180910390a250505050919050565b805160208183018101805160028252928201919093012091525481565b60045481565b6000816040516020016114fa9190613337565b604051602081830303815290604052805190602001209050919050565b6001600160e01b031981167f01ffc9a70000000000000000000000000000000000000000000000000000000014919050565b600061038e61155b836000015161209a565b61156884602001516114e7565b612102565b80600681111561157957fe5b825460ff16600681111561158957fe5b146112a95760405162461bcd60e51b81526004016103f490612efc565b81548190839060ff191660018360068111156115be57fe5b02179055505050565b6000606060006115d684611549565b60008181526006602081905260409091209192506115fd919060039063ffffffff6118a716565b600081815260076020908152604091829020805473ffffffffffffffffffffffffffffffffffffffff1916905585519091015185820151909101516116479163ffffffff611a5716565b83516040908101516020860151909101516116679163ffffffff611a5716565b83516116739082611aeb565b9250925050915091565b60006060600061168c84611549565b60008181526006602052604090209091506116b0906004600563ffffffff6118a716565b6000818152600760209081526040909120805473ffffffffffffffffffffffffffffffffffffffff19811690915585820151909101516001600160a01b0390911690611702908263ffffffff611a5716565b60208501516040015161171b908263ffffffff611a5716565b5050915091565b600061172f84848461213d565b806117605750611760847fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff8461213d565b949350505050565b6112a982826002611f93565b61177d82610c9b565b1561179a5760405162461bcd60e51b81526004016103f4906130eb565b6001600160e01b0319821660008181526003602090815260408083206001600160a01b0386168085529252808320805473ffffffffffffffffffffffffffffffffffffffff19169055519092339290917f682f2c466c1e9f6883eb72cbced01373e1cb18b05ae5c8bc04dc73d73e29f8cd9190a45050565b61181b81610c9b565b156118385760405162461bcd60e51b81526004016103f4906130eb565b6001600160e01b03198116600081815260036020908152604080832060018085529252808320805473ffffffffffffffffffffffffffffffffffffffff1916909217909155513392917f049c6b8b07a879425742523fa80f8ffb25e39ad518c93a5896a0df19518397e591a350565b6118b1838361156d565b610d3e83826115a6565b6020820151156112a957815160208301516118ea906001600160a01b038316908490309063ffffffff61195e16565b6119065760405162461bcd60e51b81526004016103f4906131ed565b816001600160a01b031683600001516001600160a01b03167f989eaa915cbb416ea3d6f9a63b1a3de51770c7674b11fe21ecdf76b4e1d1391085602001516040516119519190612d87565b60405180910390a3505050565b600060606323b872dd60e01b85858560405160240161197f93929190612d07565b60408051601f198184030181529190526020810180517bffffffffffffffffffffffffffffffffffffffffffffffffffffffff166001600160e01b03199093169290921790915290506119d28682612248565b9695505050505050565b6000606063095ea7b360e01b84846040516024016119fb929190612d2b565b60408051601f198184030181529190526020810180517bffffffffffffffffffffffffffffffffffffffffffffffffffffffff166001600160e01b0319909316929092179091529050611a4e8582612248565b95945050505050565b6020820151156112a95781516020830151611a84906001600160a01b03831690849063ffffffff6122ad16565b611aa05760405162461bcd60e51b81526004016103f490612ec5565b816001600160a01b031683600001516001600160a01b03167fe6e0ef9cd056ca98561ca60e347ada61e1ede2f1142a078951b7a52e1e508e6085602001516040516119519190612d87565b604051600090606090339084907f59c3746e635078efc737fb3f37dd8188203b8df10bbad35878a7d156f4f51c41908590a383606001516001600160a01b031663c2d85afc85608001518660a00151866040518463ffffffff1660e01b8152600401611b5993929190612d57565b600060405180830381600087803b158015611b7357600080fd5b505af1158015611b87573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f19168201604052611baf91908101906127b0565b915091509250929050565b6000816040015160200151600014158015611be257506040820151516001600160a01b031615155b15611cdd57600060608360400151600001516001600160a01b03166370a0823160e01b30604051602401611c169190612cf3565b60408051601f198184030181529181526020820180517bffffffffffffffffffffffffffffffffffffffffffffffffffffffff166001600160e01b0319909416939093179092529051611c699190612c46565b6000604051808303816000865af19150503d8060008114611ca6576040519150601f19603f3d011682016040523d82523d6000602084013e611cab565b606091505b5091509150818015611cbe575060008151115b611cda5760405162461bcd60e51b81526004016103f490612f33565b50505b602080830151015115801590611d0057506020820151516001600160a01b031615155b15611dfb57600060608360200151600001516001600160a01b03166370a0823160e01b30604051602401611d349190612cf3565b60408051601f198184030181529181526020820180517bffffffffffffffffffffffffffffffffffffffffffffffffffffffff166001600160e01b0319909416939093179092529051611d879190612c46565b6000604051808303816000865af19150503d8060008114611dc4576040519150601f19603f3d011682016040523d82523d6000602084013e611dc9565b606091505b5091509150818015611ddc575060008151115b611df85760405162461bcd60e51b81526004016103f490612f33565b50505b611e04826114e7565b60048190556040513391907f844435c59f7ccdf12de134e8f9b3b7d664fe9f06e3263680779599ba4097bc3f90611e3c908690613337565b60405180910390a3505060045490565b6040518060400160405280600381526020017f61636c0000000000000000000000000000000000000000000000000000000000815250600281604051611e929190612c46565b908152602001604051809103902054600014611ec05760405162461bcd60e51b81526004016103f490613159565b43600282604051611ed19190612c46565b90815260405190819003602001902055611ef263161b7d8160e21b83611768565b80604051611f009190612c46565b604051908190038120907f7bc2a48a4a566e237a12186f19d985b0f76afc9d5290601edac19876253670c290600090a25050565b6001600160e01b0319811660009081526020819052604090819020805460ff19166001179055517fbf5e1f87f5ab65b58074cd29244d7c487a948983cda4b932e0f966b62bd34aca90611f88908390612e16565b60405180910390a150565b611f9c83610c9b565b15611fb95760405162461bcd60e51b81526004016103f4906130eb565b6001600160a01b03821660011415611fe35760405162461bcd60e51b81526004016103f4906132c9565b6001600160e01b0319831660008181526003602090815260408083206001600160a01b038781168086529190935292819020805473ffffffffffffffffffffffffffffffffffffffff19169286169290921790915551909133917fc62063b81f7036fd97a0dc546516e99f11004d2d76ca0fddd3866346c86e70919061206a908690612cf3565b60405180910390a4505050565b8082018281101561038e5760405162461bcd60e51b81526004016103f490613300565b6000816000015182602001518360400151846060015185608001516040516020016120c59190612d44565b604051602081830303815290604052805190602001208660a001518760c00151805190602001206040516020016114fa97969594939291906133be565b604051600090469061211e903090839087908790602001612c8b565b6040516020818303038152906040528051906020012091505092915050565b6001600160e01b0319831660009081526003602090815260408083206001600160a01b038087168552925282205416801561223d576001600160a01b0381166002141561218e576001915050610f6d565b6040517f097c81080000000000000000000000000000000000000000000000000000000081526001600160a01b0382169063097c8108906121d790889088908890600401612e2b565b602060405180830381600087803b1580156121f157600080fd5b505af1925050508015612221575060408051601f3d908101601f1916820190925261221e91810190612778565b60015b61222a5761223d565b801561223b57600192505050610f6d565b505b506000949350505050565b600061225c836001600160a01b03166122cc565b6122685750600061038e565b6040516020818451602086016000885af180156122a5573d8015612293576020811461229c576122a3565b600193506122a3565b8251151593505b505b505092915050565b6000606063a9059cbb60e01b84846040516024016119fb929190612d2b565b3b151590565b6040805160608101909152806000815260006020820181905260409091015290565b604080518082019091526000808252602082015290565b803561038e81613491565b600082601f830112612326578081fd5b813561233961233482613421565b6133fa565b818152915060208083019084810160005b848110156123cf5781358701606080601f19838c0301121561236b57600080fd5b612374816133fa565b6123808b87850161230b565b8152604080840135878301528284013567ffffffffffffffff8111156123a557600080fd5b6123b38d89838801016123da565b918301919091525086525050928201929082019060010161234a565b505050505092915050565b600082601f8301126123ea578081fd5b81356123f861233482613441565b915080825283602082850101111561240f57600080fd5b8060208401602084013760009082016020015292915050565b600082601f830112612438578081fd5b815161244661233482613441565b915080825283602082850101111561245d57600080fd5b61246e816020840160208601613465565b5092915050565b600060408284031215612486578081fd5b61249060406133fa565b9050813561249d81613491565b808252506020820135602082015292915050565b600061010082840312156124c3578081fd5b6124cd60c06133fa565b9050813581526124e08360208401612475565b60208201526124f28360608401612475565b604082015260a082013561250581613491565b606082015260c082013567ffffffffffffffff81111561252457600080fd5b612530848285016123da565b60808301525060e082013560a082015292915050565b600060408284031215612557578081fd5b61256160406133fa565b9050813567ffffffffffffffff8082111561257b57600080fd5b81840160e0818703121561258e57600080fd5b61259860e06133fa565b925080358352602081013560208401526125b5866040830161230b565b60408401526125c7866060830161230b565b60608401526080810135828111156125de57600080fd5b6125ea87828401612316565b60808501525060a081013560a084015260c08101358281111561260c57600080fd5b612618878284016123da565b60c085015250509082526020830135908082111561263557600080fd5b50612642848285016124b1565b60208301525092915050565b600080600060608486031215612662578283fd5b835161266d81613491565b602085015190935061267e81613491565b80925050604084015190509250925092565b600080604083850312156126a2578182fd5b82356126ad81613491565b9150602083013567ffffffffffffffff8111156126c8578182fd5b6126d4858286016124b1565b9150509250929050565b600080604083850312156126f0578182fd5b82516126fb81613491565b6020939093015192949293505050565b6000806020838503121561271d578182fd5b823567ffffffffffffffff80821115612734578384fd5b81850186601f820112612745578485fd5b8035925081831115612755578485fd5b866020606085028301011115612769578485fd5b60200196919550909350505050565b600060208284031215612789578081fd5b81518015158114610f6d578182fd5b6000602082840312156127a9578081fd5b5035919050565b600080604083850312156127c2578182fd5b8251915060208084015167ffffffffffffffff8111156127e0578283fd5b80850186601f8201126127f1578384fd5b8051915061280161233483613421565b82815283810190828501865b85811015612836576128248b888451880101612428565b8452928601929086019060010161280d565b5096999098509650505050505050565b60008060408385031215612858578182fd5b82359150602083013561286a81613491565b809150509250929050565b600060208284031215612886578081fd5b8135610f6d816134a9565b600080604083850312156128a3578182fd5b82356128ae816134a9565b9150602083013561286a81613491565b6000806000606084860312156128d2578081fd5b83356128dd816134a9565b925060208401356128ed81613491565b915060408401356128fd81613491565b809150509250925092565b600060208284031215612919578081fd5b813567ffffffffffffffff81111561292f578182fd5b611760848285016123da565b60006060828403121561294c578081fd5b61295660606133fa565b823560038110612964578283fd5b81526020830135612974816134a9565b6020820152604083013561298781613491565b60408201529392505050565b6000602082840312156129a4578081fd5b813567ffffffffffffffff8111156129ba578182fd5b611760848285016124b1565b6000602082840312156129d7578081fd5b813567ffffffffffffffff8111156129ed578182fd5b61176084828501612546565b60008060408385031215612a0b578182fd5b823567ffffffffffffffff80821115612a22578384fd5b612a2e86838701612546565b93506020850135915080821115612a43578283fd5b506126d4858286016123da565b60008060408385031215612a62578182fd5b823567ffffffffffffffff811115612a78578283fd5b612a8485828601612546565b95602094909401359450505050565b600060208284031215612aa4578081fd5b5051919050565b6000815180845260208085019450848183028601828601855b85811015612b17578383038952815160606001600160a01b03825116855286820151878601526040808301518282880152612b0183880182612b24565b9c89019c96505050928601925050600101612ac4565b5090979650505050505050565b60008151808452612b3c816020860160208601613465565b601f01601f19169290920160200192915050565b80516001600160a01b03168252602090810151910152565b6000610100825184526020830151612b836020860182612b50565b506040830151612b966060860182612b50565b506001600160a01b0360608401511660a085015260808301518160c0860152612bc182860182612b24565b60a085015160e087015280935050505092915050565b6000815183526020820151602084015260408201516001600160a01b0380821660408601528060608501511660608601525050608082015160e06080850152612c2360e0850182612aab565b60a084015160a086015260c0840151915084810360c0860152611a4e8183612b24565b60008251612c58818460208701613465565b9190910192915050565b7f61636c0000000000000000000000000000000000000000000000000000000000815260030190565b7f657263336b2d7631000000000000000000000000000000000000000000000000815260609490941b7fffffffffffffffffffffffffffffffffffffffff000000000000000000000000166008850152601c840192909252603c830152605c820152607c0190565b6001600160a01b0391909116815260200190565b6001600160a01b039384168152919092166020820152604081019190915260600190565b6001600160a01b03929092168252602082015260400190565b600060208252610f6d6020830184612aab565b600060608252612d6a6060830186612aab565b60208301949094525060400152919050565b901515815260200190565b90815260200190565b600060408201848352602060408185015281855180845260608601915060608382028701019350828701855b82811015612e08577fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffa0888703018452612df6868351612b24565b95509284019290840190600101612dbc565b509398975050505050505050565b6001600160e01b031991909116815260200190565b60006001600160e01b0319851682526001600160a01b038416602083015260606040830152611a4e6060830184612b24565b600060208252610f6d6020830184612b24565b600060808252612e836080830186612b24565b90508360208301526117606040830184612b50565b6020810160078310612ea657fe5b91905290565b6000838252604060208301526117606040830184612b24565b6020808252601a908201527f6465706f7369743a2062616420746f6b656e2072656c65617365000000000000604082015260600190565b60208082526010908201527f71756575653a2062616420737461746500000000000000000000000000000000604082015260600190565b60208082526011908201527f71756575653a2062616420636f6e666967000000000000000000000000000000604082015260600190565b60208082526009908201527f61636c3a20617574680000000000000000000000000000000000000000000000604082015260600190565b60208082526015908201527f71756575653a2062616420646973707574652069640000000000000000000000604082015260600190565b60208082526010908201527f71756575653a20626164206e6f6e636500000000000000000000000000000000604082015260600190565b60208082526010908201527f71756575653a206261642064656c617900000000000000000000000000000000604082015260600190565b60208082526010908201527f71756575653a2062616420726573657400000000000000000000000000000000604082015260600190565b60208082526013908201527f71756575653a20626164206665652070756c6c00000000000000000000000000604082015260600190565b60208082526014908201527f71756575653a20626164207375626d6974746572000000000000000000000000604082015260600190565b6020808252600b908201527f61636c3a2066726f7a656e000000000000000000000000000000000000000000604082015260600190565b60208082526012908201527f71756575653a2062616420617070726f76650000000000000000000000000000604082015260600190565b60208082526022908201527f696e697469616c697a61626c653a20616c726561647920696e697469616c697a60408201527f6564000000000000000000000000000000000000000000000000000000000000606082015260800190565b60208082526010908201527f71756575653a2077616974206d6f726500000000000000000000000000000000604082015260600190565b60208082526017908201527f6465706f7369743a2062616420746f6b656e206c6f636b000000000000000000604082015260600190565b60208082526012908201527f71756575653a206e6f74207375626a6563740000000000000000000000000000604082015260600190565b6020808252601c908201527f63616c6c6461746173697a653a206c696d697420657863656564656400000000604082015260600190565b6020808252601c908201527f61636c3a20696e697469616c20726f6f74206d6973616c69676e656400000000604082015260600190565b6020808252600f908201527f61636c3a2062616420667265657a650000000000000000000000000000000000604082015260600190565b6020808252600e908201527f6d6174683a206f766572666c6f77000000000000000000000000000000000000604082015260600190565b600060208252610f6d6020830184612b68565b6000602082528251604060208401526133666060840182612bd7565b60208501519150601f19848203016040850152611a4e8183612b68565b600060208252610f6d6020830184612bd7565b60008482526001600160a01b038416602083015260606040830152611a4e6060830184612b24565b96875260208701959095526001600160a01b039384166040870152919092166060850152608084019190915260a083015260c082015260e00190565b60405181810167ffffffffffffffff8111828210171561341957600080fd5b604052919050565b600067ffffffffffffffff821115613437578081fd5b5060209081020190565b600067ffffffffffffffff821115613457578081fd5b50601f01601f191660200190565b60005b83811015613480578181015183820152602001613468565b838111156106e65750506000910152565b6001600160a01b03811681146134a657600080fd5b50565b6001600160e01b0319811681146134a657600080fdfea26469706673582212204218e5e75bd42f91e624d7ea48e51afe9dc293dee3f9d382ecc95ad708a2ae0a64736f6c63430006080033d87da3e1f08043464b74e6b0861ccd8d8a5174e228287ac9b9f6efc1673da4ec7bc2a48a4a566e237a12186f19d985b0f76afc9d5290601edac19876253670c2",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106101825760003560e01c80637e8c7f08116100d8578063affed0e01161008c578063c832048011610066578063c832048014610334578063cc1d4cab14610347578063e1f1176d1461035a57610182565b8063affed0e014610306578063bdf9a7261461030e578063c8182af01461032157610182565b806396fc8abd116100bd57806396fc8abd146102c0578063a157a10d146102e0578063a2157227146102f357610182565b80637e8c7f08146102985780638f8b35b2146102ad57610182565b80633e2da6a91161013a5780635a08160b116101145780635a08160b146102525780637744efda146102655780637c10dea61461027857610182565b80633e2da6a914610219578063495a98251461022c578063588497341461023f57610182565b80631c47671b1161016b5780631c47671b146101d15780631f13405b146101e65780633da956aa1461020657610182565b806301ffc9a71461018757806314d56921146101b0575b600080fd5b61019a610195366004612875565b610362565b6040516101a79190612d7c565b60405180910390f35b6101c36101be366004612a50565b610394565b6040516101a7929190612d90565b6101e46101df36600461270b565b6105cb565b005b6101f96101f43660046129f9565b6106ec565b6040516101a79190612d87565b6101c36102143660046129c6565b610b89565b6101f9610227366004612846565b610c7e565b61019a61023a366004612875565b610c9b565b6101e461024d366004612891565b610cce565b6101e46102603660046129f9565b610d43565b6101f9610273366004612993565b610efc565b61028b610286366004612798565b610f74565b6040516101a79190612e98565b6102a0610f89565b6040516101a79190612e16565b6101e46102bb366004612690565b610f94565b6102d36102ce366004612891565b61112d565b6040516101a79190612cf3565b6101e46102ee366004612891565b611153565b6101e46103013660046128be565b6111c3565b6101f9611234565b6101e461031c366004612875565b61123a565b6102d361032f366004612798565b6112ad565b6101f96103423660046129c6565b6112c8565b6101f9610355366004612908565b6114c4565b6101f96114e1565b6001600160e01b0319811660009081526020819052604081205460ff168061038e575061038e82611517565b92915050565b6000606060006103a385611549565b6020808701516060015160008381526008835260408082206001600160a01b038416835290935291909120549192509060018601146103fd5760405162461bcd60e51b81526004016103f490612fa1565b60405180910390fd5b60008281526008602090815260408083206001600160a01b038516845282528083208390558483526006909152902061043d90600263ffffffff61156d16565b600080826001600160a01b031663db18af6c886040518263ffffffff1660e01b815260040161046c9190612d87565b6040805180830381600087803b15801561048557600080fd5b505af1158015610499573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906104bd91906126de565b90925090506001600160a01b03821630146104ea5760405162461bcd60e51b81526004016103f490613224565b6004811461051a816104fd576004610500565b60035b60008781526006602052604090209063ffffffff6115a616565b336001600160a01b0316857f027d8a5d945eb361475964ed2c71b8332b27af2d630ab5daf829d67afd2584e6836040516105549190612d7c565b60405180910390a387846001600160a01b03167f56c8631a8915c0d362dbe57a61215fdde954f73f81c8a3a1f55572fb015207b1846040516105969190612d87565b60405180910390a380156105bb576105ad896115c7565b9650965050505050506105c4565b6105ad8961167d565b9250929050565b60408051602036601f810182900482028301820190935282825263161b7d8160e21b9261061592849233926000918190840183828082843760009201919091525061172292505050565b6106315760405162461bcd60e51b81526004016103f490612f6a565b60005b828110156106e6576106446122d2565b84848381811061065057fe5b905060600201803603810190610666919061293b565b905060008151600281111561067757fe5b14156106945761068f81602001518260400151611768565b6106dd565b6001815160028111156106a357fe5b14156106bb5761068f81602001518260400151611774565b6002815160028111156106ca57fe5b14156106dd576106dd8160200151611812565b50600101610634565b50505050565b6000631f13405b60e01b61073881336000368080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525061172292505050565b6107545760405162461bcd60e51b81526004016103f490612f6a565b600061075f85611549565b6000818152600760209081526040808320805473ffffffffffffffffffffffffffffffffffffffff191633179055600690915290209091506107aa906001600263ffffffff6118a716565b6107b26122f4565b506020850151604001516107cc813363ffffffff6118bb16565b600086602001516060015190506000806000836001600160a01b0316637b751b9e6040518163ffffffff1660e01b815260040160606040518083038186803b15801561081757600080fd5b505afa15801561082b573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061084f919061264e565b919450925090506108716001600160a01b03831633308463ffffffff61195e16565b61088d5760405162461bcd60e51b81526004016103f49061307d565b6108a76001600160a01b038316848363ffffffff6119dc16565b6108c35760405162461bcd60e51b81526004016103f490613122565b836001600160a01b031663c13517e160028c6040516020016108e5919061334a565b6040516020818303038152906040526040518363ffffffff1660e01b8152600401610911929190612eac565b602060405180830381600087803b15801561092b57600080fd5b505af115801561093f573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906109639190612a93565b97506109806001600160a01b03831684600063ffffffff6119dc16565b61099c5760405162461bcd60e51b81526004016103f490613046565b895160408082015160c09092015190517f7cb57c640000000000000000000000000000000000000000000000000000000081526001600160a01b03871692637cb57c64926109f0928d929190600401613396565b600060405180830381600087803b158015610a0a57600080fd5b505af1158015610a1e573d6000803e3d6000fd5b50506040517f7cb57c640000000000000000000000000000000000000000000000000000000081526001600160a01b0387169250637cb57c649150610a6b908b9033908e90600401613396565b600060405180830381600087803b158015610a8557600080fd5b505af1158015610a99573d6000803e3d6000fd5b50506040517f7e9adccf0000000000000000000000000000000000000000000000000000000081526001600160a01b0387169250637e9adccf9150610ae2908b90600401612d87565b600060405180830381600087803b158015610afc57600080fd5b505af1158015610b10573d6000803e3d6000fd5b50505060008781526008602090815260408083206001600160a01b03891684529091529081902060018b0190555133915087907f429df837eb45b6713f725a0d3e57db939fd7dd7d58bb3cd967fa37091572db9f90610b74908d908d908b90612e70565b60405180910390a35050505050505092915050565b60006060633da956aa60e01b610bd781336000368080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525061172292505050565b610bf35760405162461bcd60e51b81526004016103f490612f6a565b835160200151421015610c185760405162461bcd60e51b81526004016103f4906131b6565b6000610c2385611549565b6000818152600660208190526040909120919250610c4a919060019063ffffffff6118a716565b8451604001516020808701510151610c679163ffffffff611a5716565b8451610c739082611aeb565b935093505050915091565b600860209081526000928352604080842090915290825290205481565b6001600160e01b031916600090815260036020908152604080832060018085529252909120546001600160a01b03161490565b60408051602036601f810182900482028301820190935282825263161b7d8160e21b92610d1892849233926000918190840183828082843760009201919091525061172292505050565b610d345760405162461bcd60e51b81526004016103f490612f6a565b610d3e8383611774565b505050565b635a08160b60e01b610d8d81336000368080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525061172292505050565b610da95760405162461bcd60e51b81526004016103f490612f6a565b6000610db484611549565b60008181526006602052604090209091506002815460ff166006811115610dd757fe5b1415610e8357610df0816002600563ffffffff6118a716565b6000828152600760209081526040808320805473ffffffffffffffffffffffffffffffffffffffff198116909155600883528184208984018051606001516001600160a01b03908116875291855283862095909555895190920151935190920151911691610e64919063ffffffff611a5716565b602086015160400151610e7d908263ffffffff611a5716565b50610eb3565b610e96816001600563ffffffff6118a716565b8451604001516020808701510151610eb39163ffffffff611a5716565b336001600160a01b0316827fe2530b9681f9726904f9ca7fe725c0c53ea1b72370981ac6a5beaa9758c8c35686604051610eed9190612e5d565b60405180910390a35050505050565b6000637744efda60e01b610f4881336000368080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525061172292505050565b610f645760405162461bcd60e51b81526004016103f490612f6a565b610f6d83611bba565b9392505050565b60066020526000908152604090205460ff1681565b63161b7d8160e21b81565b816002604051610fa390612c62565b90815260200160405180910390205460001415610fc857610fc381611e4c565b611021565b6001600160a01b0381811660009081527fd87da3e1f08043464b74e6b0861ccd8d8a5174e228287ac9b9f6efc1673da4ec6020526040902054166002146110215760405162461bcd60e51b81526004016103f490613292565b6040518060400160405280600581526020017f71756575650000000000000000000000000000000000000000000000000000008152506002816040516110679190612c46565b9081526020016040518091039020546000146110955760405162461bcd60e51b81526004016103f490613159565b436002826040516110a69190612c46565b908152604051908190036020019020556110bf83611bba565b506110e97fd311828100000000000000000000000000000000000000000000000000000000611f34565b806040516110f79190612c46565b604051908190038120907f7bc2a48a4a566e237a12186f19d985b0f76afc9d5290601edac19876253670c290600090a250505050565b60036020908152600092835260408084209091529082529020546001600160a01b031681565b60408051602036601f810182900482028301820190935282825263161b7d8160e21b9261119d92849233926000918190840183828082843760009201919091525061172292505050565b6111b95760405162461bcd60e51b81526004016103f490612f6a565b610d3e8383611768565b60408051602036601f810182900482028301820190935282825263161b7d8160e21b9261120d92849233926000918190840183828082843760009201919091525061172292505050565b6112295760405162461bcd60e51b81526004016103f490612f6a565b6106e6848484611f93565b60055481565b60408051602036601f810182900482028301820190935282825263161b7d8160e21b9261128492849233926000918190840183828082843760009201919091525061172292505050565b6112a05760405162461bcd60e51b81526004016103f490612f6a565b6112a982611812565b5050565b6007602052600090815260409020546001600160a01b031681565b600063c832048060e01b61131481336000368080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525061172292505050565b6113305760405162461bcd60e51b81526004016103f490612f6a565b60058054600101908190558351511461135b5760405162461bcd60e51b81526004016103f490612fd8565b600061136a84602001516114e7565b9050600454811461138d5760405162461bcd60e51b81526004016103f490612f33565b6020840151516113a3904263ffffffff61207716565b84516020015110156113c75760405162461bcd60e51b81526004016103f49061300f565b8351604001516001600160a01b031633146113f45760405162461bcd60e51b81526004016103f4906130b4565b602084015160a00151369081111561141e5760405162461bcd60e51b81526004016103f49061325b565b61143461142e866000015161209a565b83612102565b60008181526006602052604081209195506114579190600163ffffffff6118a716565b61145f6122f4565b50602080860151015185516040015161147f90829063ffffffff6118bb16565b847f67f87ff46443c95843c7bd72a026dd23ba0015528ce9f8f15c5c6917645034ef87600001516040516114b39190613383565b60405180910390a250505050919050565b805160208183018101805160028252928201919093012091525481565b60045481565b6000816040516020016114fa9190613337565b604051602081830303815290604052805190602001209050919050565b6001600160e01b031981167f01ffc9a70000000000000000000000000000000000000000000000000000000014919050565b600061038e61155b836000015161209a565b61156884602001516114e7565b612102565b80600681111561157957fe5b825460ff16600681111561158957fe5b146112a95760405162461bcd60e51b81526004016103f490612efc565b81548190839060ff191660018360068111156115be57fe5b02179055505050565b6000606060006115d684611549565b60008181526006602081905260409091209192506115fd919060039063ffffffff6118a716565b600081815260076020908152604091829020805473ffffffffffffffffffffffffffffffffffffffff1916905585519091015185820151909101516116479163ffffffff611a5716565b83516040908101516020860151909101516116679163ffffffff611a5716565b83516116739082611aeb565b9250925050915091565b60006060600061168c84611549565b60008181526006602052604090209091506116b0906004600563ffffffff6118a716565b6000818152600760209081526040909120805473ffffffffffffffffffffffffffffffffffffffff19811690915585820151909101516001600160a01b0390911690611702908263ffffffff611a5716565b60208501516040015161171b908263ffffffff611a5716565b5050915091565b600061172f84848461213d565b806117605750611760847fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff8461213d565b949350505050565b6112a982826002611f93565b61177d82610c9b565b1561179a5760405162461bcd60e51b81526004016103f4906130eb565b6001600160e01b0319821660008181526003602090815260408083206001600160a01b0386168085529252808320805473ffffffffffffffffffffffffffffffffffffffff19169055519092339290917f682f2c466c1e9f6883eb72cbced01373e1cb18b05ae5c8bc04dc73d73e29f8cd9190a45050565b61181b81610c9b565b156118385760405162461bcd60e51b81526004016103f4906130eb565b6001600160e01b03198116600081815260036020908152604080832060018085529252808320805473ffffffffffffffffffffffffffffffffffffffff1916909217909155513392917f049c6b8b07a879425742523fa80f8ffb25e39ad518c93a5896a0df19518397e591a350565b6118b1838361156d565b610d3e83826115a6565b6020820151156112a957815160208301516118ea906001600160a01b038316908490309063ffffffff61195e16565b6119065760405162461bcd60e51b81526004016103f4906131ed565b816001600160a01b031683600001516001600160a01b03167f989eaa915cbb416ea3d6f9a63b1a3de51770c7674b11fe21ecdf76b4e1d1391085602001516040516119519190612d87565b60405180910390a3505050565b600060606323b872dd60e01b85858560405160240161197f93929190612d07565b60408051601f198184030181529190526020810180517bffffffffffffffffffffffffffffffffffffffffffffffffffffffff166001600160e01b03199093169290921790915290506119d28682612248565b9695505050505050565b6000606063095ea7b360e01b84846040516024016119fb929190612d2b565b60408051601f198184030181529190526020810180517bffffffffffffffffffffffffffffffffffffffffffffffffffffffff166001600160e01b0319909316929092179091529050611a4e8582612248565b95945050505050565b6020820151156112a95781516020830151611a84906001600160a01b03831690849063ffffffff6122ad16565b611aa05760405162461bcd60e51b81526004016103f490612ec5565b816001600160a01b031683600001516001600160a01b03167fe6e0ef9cd056ca98561ca60e347ada61e1ede2f1142a078951b7a52e1e508e6085602001516040516119519190612d87565b604051600090606090339084907f59c3746e635078efc737fb3f37dd8188203b8df10bbad35878a7d156f4f51c41908590a383606001516001600160a01b031663c2d85afc85608001518660a00151866040518463ffffffff1660e01b8152600401611b5993929190612d57565b600060405180830381600087803b158015611b7357600080fd5b505af1158015611b87573d6000803e3d6000fd5b505050506040513d6000823e601f3d908101601f19168201604052611baf91908101906127b0565b915091509250929050565b6000816040015160200151600014158015611be257506040820151516001600160a01b031615155b15611cdd57600060608360400151600001516001600160a01b03166370a0823160e01b30604051602401611c169190612cf3565b60408051601f198184030181529181526020820180517bffffffffffffffffffffffffffffffffffffffffffffffffffffffff166001600160e01b0319909416939093179092529051611c699190612c46565b6000604051808303816000865af19150503d8060008114611ca6576040519150601f19603f3d011682016040523d82523d6000602084013e611cab565b606091505b5091509150818015611cbe575060008151115b611cda5760405162461bcd60e51b81526004016103f490612f33565b50505b602080830151015115801590611d0057506020820151516001600160a01b031615155b15611dfb57600060608360200151600001516001600160a01b03166370a0823160e01b30604051602401611d349190612cf3565b60408051601f198184030181529181526020820180517bffffffffffffffffffffffffffffffffffffffffffffffffffffffff166001600160e01b0319909416939093179092529051611d879190612c46565b6000604051808303816000865af19150503d8060008114611dc4576040519150601f19603f3d011682016040523d82523d6000602084013e611dc9565b606091505b5091509150818015611ddc575060008151115b611df85760405162461bcd60e51b81526004016103f490612f33565b50505b611e04826114e7565b60048190556040513391907f844435c59f7ccdf12de134e8f9b3b7d664fe9f06e3263680779599ba4097bc3f90611e3c908690613337565b60405180910390a3505060045490565b6040518060400160405280600381526020017f61636c0000000000000000000000000000000000000000000000000000000000815250600281604051611e929190612c46565b908152602001604051809103902054600014611ec05760405162461bcd60e51b81526004016103f490613159565b43600282604051611ed19190612c46565b90815260405190819003602001902055611ef263161b7d8160e21b83611768565b80604051611f009190612c46565b604051908190038120907f7bc2a48a4a566e237a12186f19d985b0f76afc9d5290601edac19876253670c290600090a25050565b6001600160e01b0319811660009081526020819052604090819020805460ff19166001179055517fbf5e1f87f5ab65b58074cd29244d7c487a948983cda4b932e0f966b62bd34aca90611f88908390612e16565b60405180910390a150565b611f9c83610c9b565b15611fb95760405162461bcd60e51b81526004016103f4906130eb565b6001600160a01b03821660011415611fe35760405162461bcd60e51b81526004016103f4906132c9565b6001600160e01b0319831660008181526003602090815260408083206001600160a01b038781168086529190935292819020805473ffffffffffffffffffffffffffffffffffffffff19169286169290921790915551909133917fc62063b81f7036fd97a0dc546516e99f11004d2d76ca0fddd3866346c86e70919061206a908690612cf3565b60405180910390a4505050565b8082018281101561038e5760405162461bcd60e51b81526004016103f490613300565b6000816000015182602001518360400151846060015185608001516040516020016120c59190612d44565b604051602081830303815290604052805190602001208660a001518760c00151805190602001206040516020016114fa97969594939291906133be565b604051600090469061211e903090839087908790602001612c8b565b6040516020818303038152906040528051906020012091505092915050565b6001600160e01b0319831660009081526003602090815260408083206001600160a01b038087168552925282205416801561223d576001600160a01b0381166002141561218e576001915050610f6d565b6040517f097c81080000000000000000000000000000000000000000000000000000000081526001600160a01b0382169063097c8108906121d790889088908890600401612e2b565b602060405180830381600087803b1580156121f157600080fd5b505af1925050508015612221575060408051601f3d908101601f1916820190925261221e91810190612778565b60015b61222a5761223d565b801561223b57600192505050610f6d565b505b506000949350505050565b600061225c836001600160a01b03166122cc565b6122685750600061038e565b6040516020818451602086016000885af180156122a5573d8015612293576020811461229c576122a3565b600193506122a3565b8251151593505b505b505092915050565b6000606063a9059cbb60e01b84846040516024016119fb929190612d2b565b3b151590565b6040805160608101909152806000815260006020820181905260409091015290565b604080518082019091526000808252602082015290565b803561038e81613491565b600082601f830112612326578081fd5b813561233961233482613421565b6133fa565b818152915060208083019084810160005b848110156123cf5781358701606080601f19838c0301121561236b57600080fd5b612374816133fa565b6123808b87850161230b565b8152604080840135878301528284013567ffffffffffffffff8111156123a557600080fd5b6123b38d89838801016123da565b918301919091525086525050928201929082019060010161234a565b505050505092915050565b600082601f8301126123ea578081fd5b81356123f861233482613441565b915080825283602082850101111561240f57600080fd5b8060208401602084013760009082016020015292915050565b600082601f830112612438578081fd5b815161244661233482613441565b915080825283602082850101111561245d57600080fd5b61246e816020840160208601613465565b5092915050565b600060408284031215612486578081fd5b61249060406133fa565b9050813561249d81613491565b808252506020820135602082015292915050565b600061010082840312156124c3578081fd5b6124cd60c06133fa565b9050813581526124e08360208401612475565b60208201526124f28360608401612475565b604082015260a082013561250581613491565b606082015260c082013567ffffffffffffffff81111561252457600080fd5b612530848285016123da565b60808301525060e082013560a082015292915050565b600060408284031215612557578081fd5b61256160406133fa565b9050813567ffffffffffffffff8082111561257b57600080fd5b81840160e0818703121561258e57600080fd5b61259860e06133fa565b925080358352602081013560208401526125b5866040830161230b565b60408401526125c7866060830161230b565b60608401526080810135828111156125de57600080fd5b6125ea87828401612316565b60808501525060a081013560a084015260c08101358281111561260c57600080fd5b612618878284016123da565b60c085015250509082526020830135908082111561263557600080fd5b50612642848285016124b1565b60208301525092915050565b600080600060608486031215612662578283fd5b835161266d81613491565b602085015190935061267e81613491565b80925050604084015190509250925092565b600080604083850312156126a2578182fd5b82356126ad81613491565b9150602083013567ffffffffffffffff8111156126c8578182fd5b6126d4858286016124b1565b9150509250929050565b600080604083850312156126f0578182fd5b82516126fb81613491565b6020939093015192949293505050565b6000806020838503121561271d578182fd5b823567ffffffffffffffff80821115612734578384fd5b81850186601f820112612745578485fd5b8035925081831115612755578485fd5b866020606085028301011115612769578485fd5b60200196919550909350505050565b600060208284031215612789578081fd5b81518015158114610f6d578182fd5b6000602082840312156127a9578081fd5b5035919050565b600080604083850312156127c2578182fd5b8251915060208084015167ffffffffffffffff8111156127e0578283fd5b80850186601f8201126127f1578384fd5b8051915061280161233483613421565b82815283810190828501865b85811015612836576128248b888451880101612428565b8452928601929086019060010161280d565b5096999098509650505050505050565b60008060408385031215612858578182fd5b82359150602083013561286a81613491565b809150509250929050565b600060208284031215612886578081fd5b8135610f6d816134a9565b600080604083850312156128a3578182fd5b82356128ae816134a9565b9150602083013561286a81613491565b6000806000606084860312156128d2578081fd5b83356128dd816134a9565b925060208401356128ed81613491565b915060408401356128fd81613491565b809150509250925092565b600060208284031215612919578081fd5b813567ffffffffffffffff81111561292f578182fd5b611760848285016123da565b60006060828403121561294c578081fd5b61295660606133fa565b823560038110612964578283fd5b81526020830135612974816134a9565b6020820152604083013561298781613491565b60408201529392505050565b6000602082840312156129a4578081fd5b813567ffffffffffffffff8111156129ba578182fd5b611760848285016124b1565b6000602082840312156129d7578081fd5b813567ffffffffffffffff8111156129ed578182fd5b61176084828501612546565b60008060408385031215612a0b578182fd5b823567ffffffffffffffff80821115612a22578384fd5b612a2e86838701612546565b93506020850135915080821115612a43578283fd5b506126d4858286016123da565b60008060408385031215612a62578182fd5b823567ffffffffffffffff811115612a78578283fd5b612a8485828601612546565b95602094909401359450505050565b600060208284031215612aa4578081fd5b5051919050565b6000815180845260208085019450848183028601828601855b85811015612b17578383038952815160606001600160a01b03825116855286820151878601526040808301518282880152612b0183880182612b24565b9c89019c96505050928601925050600101612ac4565b5090979650505050505050565b60008151808452612b3c816020860160208601613465565b601f01601f19169290920160200192915050565b80516001600160a01b03168252602090810151910152565b6000610100825184526020830151612b836020860182612b50565b506040830151612b966060860182612b50565b506001600160a01b0360608401511660a085015260808301518160c0860152612bc182860182612b24565b60a085015160e087015280935050505092915050565b6000815183526020820151602084015260408201516001600160a01b0380821660408601528060608501511660608601525050608082015160e06080850152612c2360e0850182612aab565b60a084015160a086015260c0840151915084810360c0860152611a4e8183612b24565b60008251612c58818460208701613465565b9190910192915050565b7f61636c0000000000000000000000000000000000000000000000000000000000815260030190565b7f657263336b2d7631000000000000000000000000000000000000000000000000815260609490941b7fffffffffffffffffffffffffffffffffffffffff000000000000000000000000166008850152601c840192909252603c830152605c820152607c0190565b6001600160a01b0391909116815260200190565b6001600160a01b039384168152919092166020820152604081019190915260600190565b6001600160a01b03929092168252602082015260400190565b600060208252610f6d6020830184612aab565b600060608252612d6a6060830186612aab565b60208301949094525060400152919050565b901515815260200190565b90815260200190565b600060408201848352602060408185015281855180845260608601915060608382028701019350828701855b82811015612e08577fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffa0888703018452612df6868351612b24565b95509284019290840190600101612dbc565b509398975050505050505050565b6001600160e01b031991909116815260200190565b60006001600160e01b0319851682526001600160a01b038416602083015260606040830152611a4e6060830184612b24565b600060208252610f6d6020830184612b24565b600060808252612e836080830186612b24565b90508360208301526117606040830184612b50565b6020810160078310612ea657fe5b91905290565b6000838252604060208301526117606040830184612b24565b6020808252601a908201527f6465706f7369743a2062616420746f6b656e2072656c65617365000000000000604082015260600190565b60208082526010908201527f71756575653a2062616420737461746500000000000000000000000000000000604082015260600190565b60208082526011908201527f71756575653a2062616420636f6e666967000000000000000000000000000000604082015260600190565b60208082526009908201527f61636c3a20617574680000000000000000000000000000000000000000000000604082015260600190565b60208082526015908201527f71756575653a2062616420646973707574652069640000000000000000000000604082015260600190565b60208082526010908201527f71756575653a20626164206e6f6e636500000000000000000000000000000000604082015260600190565b60208082526010908201527f71756575653a206261642064656c617900000000000000000000000000000000604082015260600190565b60208082526010908201527f71756575653a2062616420726573657400000000000000000000000000000000604082015260600190565b60208082526013908201527f71756575653a20626164206665652070756c6c00000000000000000000000000604082015260600190565b60208082526014908201527f71756575653a20626164207375626d6974746572000000000000000000000000604082015260600190565b6020808252600b908201527f61636c3a2066726f7a656e000000000000000000000000000000000000000000604082015260600190565b60208082526012908201527f71756575653a2062616420617070726f76650000000000000000000000000000604082015260600190565b60208082526022908201527f696e697469616c697a61626c653a20616c726561647920696e697469616c697a60408201527f6564000000000000000000000000000000000000000000000000000000000000606082015260800190565b60208082526010908201527f71756575653a2077616974206d6f726500000000000000000000000000000000604082015260600190565b60208082526017908201527f6465706f7369743a2062616420746f6b656e206c6f636b000000000000000000604082015260600190565b60208082526012908201527f71756575653a206e6f74207375626a6563740000000000000000000000000000604082015260600190565b6020808252601c908201527f63616c6c6461746173697a653a206c696d697420657863656564656400000000604082015260600190565b6020808252601c908201527f61636c3a20696e697469616c20726f6f74206d6973616c69676e656400000000604082015260600190565b6020808252600f908201527f61636c3a2062616420667265657a650000000000000000000000000000000000604082015260600190565b6020808252600e908201527f6d6174683a206f766572666c6f77000000000000000000000000000000000000604082015260600190565b600060208252610f6d6020830184612b68565b6000602082528251604060208401526133666060840182612bd7565b60208501519150601f19848203016040850152611a4e8183612b68565b600060208252610f6d6020830184612bd7565b60008482526001600160a01b038416602083015260606040830152611a4e6060830184612b24565b96875260208701959095526001600160a01b039384166040870152919092166060850152608084019190915260a083015260c082015260e00190565b60405181810167ffffffffffffffff8111828210171561341957600080fd5b604052919050565b600067ffffffffffffffff821115613437578081fd5b5060209081020190565b600067ffffffffffffffff821115613457578081fd5b50601f01601f191660200190565b60005b83811015613480578181015183820152602001613468565b838111156106e65750506000910152565b6001600160a01b03811681146134a657600080fd5b50565b6001600160e01b0319811681146134a657600080fdfea26469706673582212204218e5e75bd42f91e624d7ea48e51afe9dc293dee3f9d382ecc95ad708a2ae0a64736f6c63430006080033",
+  "devdoc": {
+    "methods": {
+      "challenge(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)),bytes)": {
+        "params": {
+          "_container": "A ERC3000Data.Container struct holding both the payload being scheduled for execution and the current configuration of the system",
+          "_reason": "Hint for case reviewers as to why the scheduled container is illegal"
+        }
+      },
+      "configure((uint256,(address,uint256),(address,uint256),address,bytes,uint256))": {
+        "params": {
+          "_config": "A ERC3000Data.Config struct holding all the new params that will control the queue"
+        }
+      },
+      "constructor": {
+        "params": {
+          "_aclRoot": "account that will be given root permissions on ACL (commonly given to factory)",
+          "_initialConfig": "initial configuration parameters"
+        }
+      },
+      "execute(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)))": {
+        "params": {
+          "_container": "A ERC3000Data.Container struct holding both the payload being scheduled for execution and the current configuration of the system"
+        }
+      },
+      "resolve(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)),uint256)": {
+        "params": {
+          "_container": "A ERC3000Data.Container struct holding both the payload being scheduled for execution and the current configuration of the system",
+          "_disputeId": "disputeId in the arbitrator in which the dispute over the container was created"
+        }
+      },
+      "schedule(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)))": {
+        "params": {
+          "_container": "A ERC3000Data.Container struct holding both the payload being scheduled for execution and the current configuration of the system"
+        }
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {
+      "challenge(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)),bytes)": {
+        "notice": "Challenge a container in case its scheduling is illegal as per Config.rules. Pulls collateral and dispute fees from sender into contract"
+      },
+      "configure((uint256,(address,uint256),(address,uint256),address,bytes,uint256))": {
+        "notice": "Apply a new configuration for all *new* containers to be scheduled"
+      },
+      "execute(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)))": {
+        "notice": "Executes an action after its execution delay has passed and its state hasn't been altered by a challenge or veto"
+      },
+      "resolve(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)),uint256)": {
+        "notice": "Apply arbitrator's ruling over a challenge once it has come to a final ruling"
+      },
+      "schedule(((uint256,uint256,address,address,(address,uint256,bytes)[],bytes32,bytes),(uint256,(address,uint256),(address,uint256),address,bytes,uint256)))": {
+        "notice": "Schedules an action for execution, allowing for challenges and vetos on a defined time window. Pulls collateral from submitter into contract."
+      }
+    }
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 530,
+        "contract": "contracts/pipelines/GovernQueue.sol:GovernQueue",
+        "label": "standardSupported",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_bytes4,t_bool)"
+      },
+      {
+        "astId": 534,
+        "contract": "contracts/pipelines/GovernQueue.sol:GovernQueue",
+        "label": "callbackMagicNumbers",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_bytes4,t_bytes32)"
+      },
+      {
+        "astId": 1087,
+        "contract": "contracts/pipelines/GovernQueue.sol:GovernQueue",
+        "label": "initBlocks",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_mapping(t_string_memory_ptr,t_uint256)"
+      },
+      {
+        "astId": 66,
+        "contract": "contracts/pipelines/GovernQueue.sol:GovernQueue",
+        "label": "roles",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_mapping(t_bytes4,t_mapping(t_address,t_address))"
+      },
+      {
+        "astId": 1940,
+        "contract": "contracts/pipelines/GovernQueue.sol:GovernQueue",
+        "label": "configHash",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_bytes32"
+      },
+      {
+        "astId": 1942,
+        "contract": "contracts/pipelines/GovernQueue.sol:GovernQueue",
+        "label": "nonce",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1946,
+        "contract": "contracts/pipelines/GovernQueue.sol:GovernQueue",
+        "label": "queue",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_mapping(t_bytes32,t_struct(Item)1862_storage)"
+      },
+      {
+        "astId": 1950,
+        "contract": "contracts/pipelines/GovernQueue.sol:GovernQueue",
+        "label": "challengerCache",
+        "offset": 0,
+        "slot": "7",
+        "type": "t_mapping(t_bytes32,t_address)"
+      },
+      {
+        "astId": 1956,
+        "contract": "contracts/pipelines/GovernQueue.sol:GovernQueue",
+        "label": "disputeItemCache",
+        "offset": 0,
+        "slot": "8",
+        "type": "t_mapping(t_bytes32,t_mapping(t_contract(IArbitrator)2950,t_uint256))"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_bytes32": {
+        "encoding": "inplace",
+        "label": "bytes32",
+        "numberOfBytes": "32"
+      },
+      "t_bytes4": {
+        "encoding": "inplace",
+        "label": "bytes4",
+        "numberOfBytes": "4"
+      },
+      "t_contract(IArbitrator)2950": {
+        "encoding": "inplace",
+        "label": "contract IArbitrator",
+        "numberOfBytes": "20"
+      },
+      "t_enum(State)1859": {
+        "encoding": "inplace",
+        "label": "enum GovernQueueStateLib.State",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_address)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => address)",
+        "numberOfBytes": "32",
+        "value": "t_address"
+      },
+      "t_mapping(t_bytes32,t_address)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => address)",
+        "numberOfBytes": "32",
+        "value": "t_address"
+      },
+      "t_mapping(t_bytes32,t_mapping(t_contract(IArbitrator)2950,t_uint256))": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => mapping(contract IArbitrator => uint256))",
+        "numberOfBytes": "32",
+        "value": "t_mapping(t_contract(IArbitrator)2950,t_uint256)"
+      },
+      "t_mapping(t_bytes32,t_struct(Item)1862_storage)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => struct GovernQueueStateLib.Item)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Item)1862_storage"
+      },
+      "t_mapping(t_bytes4,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_bytes4",
+        "label": "mapping(bytes4 => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_mapping(t_bytes4,t_bytes32)": {
+        "encoding": "mapping",
+        "key": "t_bytes4",
+        "label": "mapping(bytes4 => bytes32)",
+        "numberOfBytes": "32",
+        "value": "t_bytes32"
+      },
+      "t_mapping(t_bytes4,t_mapping(t_address,t_address))": {
+        "encoding": "mapping",
+        "key": "t_bytes4",
+        "label": "mapping(bytes4 => mapping(address => address))",
+        "numberOfBytes": "32",
+        "value": "t_mapping(t_address,t_address)"
+      },
+      "t_mapping(t_contract(IArbitrator)2950,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_contract(IArbitrator)2950",
+        "label": "mapping(contract IArbitrator => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_mapping(t_string_memory_ptr,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_string_memory_ptr",
+        "label": "mapping(string => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_string_memory_ptr": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(Item)1862_storage": {
+        "encoding": "inplace",
+        "label": "struct GovernQueueStateLib.Item",
+        "members": [
+          {
+            "astId": 1861,
+            "contract": "contracts/pipelines/GovernQueue.sol:GovernQueue",
+            "label": "state",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_enum(State)1859"
+          }
+        ],
+        "numberOfBytes": "32"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
