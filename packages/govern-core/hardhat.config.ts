@@ -24,6 +24,11 @@ const config: HardhatUserConfig = {
       url: 'https://rinkeby.eth.aragon.network',
       accounts,
     },
+    goerli: {
+      url:
+        'https://eth-goerli.g.alchemy.com/v2/E6EdrejZ7PPswowaPl3AfLkdFGEXm1PJ',
+      accounts,
+    },
   },
 }
 
