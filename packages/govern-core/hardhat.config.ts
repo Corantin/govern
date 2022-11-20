@@ -8,9 +8,7 @@ import 'hardhat-abi-exporter'
 import 'hardhat-typechain'
 import 'solidity-coverage'
 
-const accounts = [
-  '0x82bb4bda025a053c3667217e498b75a5ffbb7e295597737523a35969b7ec2de8',
-]
+const accounts = [process.env.PRIVATE_KEY!]
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -23,17 +21,12 @@ const config: HardhatUserConfig = {
     },
   },
   etherscan: {
-    apiKey: 'MXZSHPHKD1J7MGGSW9124C61G3PJZQVK2W',
+    apiKey: process.env.ETHERSCAN_API_KEY,
   },
   networks: {
     goerli: {
       chainId: 5,
-      url: 'https://goerli.infura.io/v3/74dcdd771e514bdf88cf139f93b3eae2',
-      accounts,
-    },
-    goerli: {
-      url:
-        'https://eth-goerli.g.alchemy.com/v2/E6EdrejZ7PPswowaPl3AfLkdFGEXm1PJ',
+      url: 'https://goerli.infura.io/v3/' + process.env.INFURA_KEY,
       accounts,
     },
   },
