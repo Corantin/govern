@@ -12,11 +12,9 @@ import 'solidity-coverage'
 import './tasks/govern'
 import './tasks/ens'
 
-import { node_url, accounts, RINKEBY_URL } from './utils/network'
+import { accounts } from './utils/network'
 
-const PRIV_KEYS = process.env.PRIVATE_KEY
-  ? [`0x${process.env.PRIVATE_KEY}`]
-  : []
+const PRIV_KEYS = [process.env.PRIVATE_KEY!]
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -29,7 +27,7 @@ const config: HardhatUserConfig = {
     },
   },
   namedAccounts: {
-    deployer: 0,
+    deployer: process.env.DEPLOYER_ACCOUNT!,
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_KEY,
@@ -60,6 +58,10 @@ const config: HardhatUserConfig = {
     },
     rinkeby: {
       url: 'https://rinkeby.infura.io/v3/7a03fcb37be7479da06f92c5117afd47',
+      accounts: PRIV_KEYS,
+    },
+    goerli: {
+      url: 'https://goerli.infura.io/v3/7a03fcb37be7479da06f92c5117afd47',
       accounts: PRIV_KEYS,
     },
     rinkeby_staging: {
