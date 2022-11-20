@@ -5,15 +5,15 @@
 pragma solidity 0.6.8;
 pragma experimental ABIEncoderV2;
 
-import "erc3k/contracts/IERC3000Executor.sol";
-import "erc3k/contracts/IERC3000.sol";
+import "../../erc3k/contracts/IERC3000Executor.sol";
+import "../../erc3k/contracts/IERC3000.sol";
 
-import "@aragon/govern-contract-utils/contracts/acl/ACL.sol";
-import "@aragon/govern-contract-utils/contracts/adaptive-erc165/AdaptiveERC165.sol";
-import "@aragon/govern-contract-utils/contracts/bitmaps/BitmapLib.sol";
-import "@aragon/govern-contract-utils/contracts/address-utils/AddressUtils.sol";
-import "@aragon/govern-contract-utils/contracts/erc20/ERC20.sol";
-import "@aragon/govern-contract-utils/contracts/erc20/SafeERC20.sol";
+import "../../govern-contract-utils/contracts/acl/ACL.sol";
+import "../../govern-contract-utils/contracts/adaptive-erc165/AdaptiveERC165.sol";
+import "../../govern-contract-utils/contracts/bitmaps/BitmapLib.sol";
+import "../../govern-contract-utils/contracts/address-utils/AddressUtils.sol";
+import "../../govern-contract-utils/contracts/erc20/ERC20.sol";
+import "../../govern-contract-utils/contracts/erc20/SafeERC20.sol";
 
 import "./erc1271/ERC1271.sol";
 

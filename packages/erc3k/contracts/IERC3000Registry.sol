@@ -7,7 +7,7 @@ pragma solidity 0.6.8;
 import "./IERC3000.sol";
 import "./IERC3000Executor.sol";
 
-import "@aragon/govern-token/contracts/interfaces/IERC20.sol";
+import "../../govern-token/contracts/interfaces/IERC20.sol";
 
 abstract contract IERC3000Registry {
     /**
@@ -18,13 +18,29 @@ abstract contract IERC3000Registry {
      * @param token Governance token of the DAO
      * @param initialMetadata Additional data to store for this DAO
      */
-    function register(IERC3000Executor executor, IERC3000 queue, IERC20 token, address minter, string calldata name, bytes calldata initialMetadata) virtual external;
-    event Registered(IERC3000Executor indexed executor, IERC3000 queue, IERC20 indexed token, address minter, address indexed registrant, string name);
+    function register(
+        IERC3000Executor executor,
+        IERC3000 queue,
+        IERC20 token,
+        address minter,
+        string calldata name,
+        bytes calldata initialMetadata
+    ) external virtual;
+
+    event Registered(
+        IERC3000Executor indexed executor,
+        IERC3000 queue,
+        IERC20 indexed token,
+        address minter,
+        address indexed registrant,
+        string name
+    );
 
     /**
      * @notice Sets or updates the metadata of a DAO
      * @param metadata Additional data to store for this DAO
      */
-    function setMetadata(bytes memory metadata) virtual public;
+    function setMetadata(bytes memory metadata) public virtual;
+
     event SetMetadata(IERC3000Executor indexed executor, bytes metadata);
 }

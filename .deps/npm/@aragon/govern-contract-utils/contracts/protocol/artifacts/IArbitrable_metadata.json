@@ -1,0 +1,185 @@
+{
+	"compiler": {
+		"version": "0.6.8+commit.0bbfe453"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "contract IArbitrator",
+						"name": "arbitrator",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "disputeId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "submitter",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "evidence",
+						"type": "bytes"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "finished",
+						"type": "bool"
+					}
+				],
+				"name": "EvidenceSubmitted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "contract IArbitrator",
+						"name": "arbitrator",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "disputeId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "ruling",
+						"type": "uint256"
+					}
+				],
+				"name": "Ruled",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_disputeId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_ruling",
+						"type": "uint256"
+					}
+				],
+				"name": "rule",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_disputeId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_evidence",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bool",
+						"name": "_finished",
+						"type": "bool"
+					}
+				],
+				"name": "submitEvidence",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {
+				"rule(uint256,uint256)": {
+					"details": "Give a ruling for a certain dispute, the account calling it must have rights to rule on the contract",
+					"params": {
+						"_disputeId": "Identification number of the dispute to be ruled",
+						"_ruling": "Ruling given by the arbitrator, where 0 is reserved for \"refused to make a decision\""
+					}
+				},
+				"submitEvidence(uint256,bytes,bool)": {
+					"details": "Submit evidence for a dispute",
+					"params": {
+						"_disputeId": "Id of the dispute in the Court",
+						"_evidence": "Data submitted for the evidence related to the dispute",
+						"_finished": "Whether or not the submitter has finished submitting evidence"
+					}
+				}
+			}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			".deps/npm/@aragon/govern-contract-utils/contracts/protocol/IArbitrable.sol": "IArbitrable"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 20000
+		},
+		"remappings": []
+	},
+	"sources": {
+		".deps/npm/@aragon/govern-contract-utils/contracts/address-utils/AddressUtils.sol": {
+			"keccak256": "0x64afde65cee1947a6b5a53730e0c42c71d6042e461b0f39d5713c7f6771757f2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ddcb223eded092e290b9520e52dc0193fbcb081d3d63255d64830ccb124e66d9",
+				"dweb:/ipfs/QmZ8iGQRmJ6Wxygm4w8nge8CuTxe5paNFG6m8t3NfQf1Ti"
+			]
+		},
+		".deps/npm/@aragon/govern-contract-utils/contracts/erc20/SafeERC20.sol": {
+			"keccak256": "0xf5c2b2fceb1f639cb56c6e6e098955a5583d4e240b7a021c0e3afa9de60374f4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7dbaeabc7a0450ecec730a6b9a7ed6b3dc02177b48d9387e8c13c84f018025c4",
+				"dweb:/ipfs/QmadPQTj8chnqf21H1MfD3s4yv5RYzcan8jQErsseeKu7D"
+			]
+		},
+		".deps/npm/@aragon/govern-contract-utils/contracts/protocol/IArbitrable.sol": {
+			"keccak256": "0x90eb43471eae9e12139e544fd5bf35e0a285cb5f2b2920b06f567392d417c96b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d5a12939252920717220fb267ecef6a239f1f391593c07a651a5cb764d6c1044",
+				"dweb:/ipfs/QmXtqWCZnLzav5XfLr91T8oQ5tpyC5H8ToeV8SMUr8mwFB"
+			]
+		},
+		".deps/npm/@aragon/govern-contract-utils/contracts/protocol/IArbitrator.sol": {
+			"keccak256": "0xee70f23c164a044943b02709dd7af3a23187b97a4319a1a08dd2aa531c6573f1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://df4684f2ae221a462067d49037a4b1a0b30b2f381ef67b50d7cd738901619eb5",
+				"dweb:/ipfs/QmYSc7ATLKTKeqqW2hxYZsr3LGMnYepqGBUKVswU9J6J3Z"
+			]
+		}
+	},
+	"version": 1
+}

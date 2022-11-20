@@ -8,9 +8,9 @@ import "../erc165/ERC165.sol";
 
 contract AdaptiveERC165 is ERC165 {
     // ERC165 interface ID -> whether it is supported
-    mapping (bytes4 => bool) internal standardSupported;
+    mapping(bytes4 => bool) internal standardSupported;
     // Callback function signature -> magic number to return
-    mapping (bytes4 => bytes32) internal callbackMagicNumbers;
+    mapping(bytes4 => bytes32) internal callbackMagicNumbers;
 
     bytes32 internal constant UNREGISTERED_CALLBACK = bytes32(0);
 
@@ -18,13 +18,24 @@ contract AdaptiveERC165 is ERC165 {
     event RegisteredCallback(bytes4 sig, bytes4 magicNumber);
     event ReceivedCallback(bytes4 indexed sig, bytes data);
 
-    function supportsInterface(bytes4 _interfaceId) override virtual public view returns (bool) {
-        return standardSupported[_interfaceId] || super.supportsInterface(_interfaceId);
+    function supportsInterface(bytes4 _interfaceId)
+        public
+        view
+        virtual
+        override
+        returns (bool)
+    {
+        return
+            standardSupported[_interfaceId] ||
+            super.supportsInterface(_interfaceId);
     }
 
     function _handleCallback(bytes4 _sig, bytes memory _data) internal {
         bytes32 magicNumber = callbackMagicNumbers[_sig];
-        require(magicNumber != UNREGISTERED_CALLBACK, "adap-erc165: unknown callback");
+        require(
+            magicNumber != UNREGISTERED_CALLBACK,
+            "adap-erc165: unknown callback"
+        );
 
         emit ReceivedCallback(_sig, _data);
 
@@ -35,7 +46,11 @@ contract AdaptiveERC165 is ERC165 {
         }
     }
 
-    function _registerStandardAndCallback(bytes4 _interfaceId, bytes4 _callbackSig, bytes4 _magicNumber) internal {
+    function _registerStandardAndCallback(
+        bytes4 _interfaceId,
+        bytes4 _callbackSig,
+        bytes4 _magicNumber
+    ) internal {
         _registerStandard(_interfaceId);
         _registerCallback(_callbackSig, _magicNumber);
     }
@@ -45,7 +60,9 @@ contract AdaptiveERC165 is ERC165 {
         emit RegisteredStandard(_interfaceId);
     }
 
-    function _registerCallback(bytes4 _callbackSig, bytes4 _magicNumber) internal {
+    function _registerCallback(bytes4 _callbackSig, bytes4 _magicNumber)
+        internal
+    {
         callbackMagicNumbers[_callbackSig] = _magicNumber;
         emit RegisteredCallback(_callbackSig, _magicNumber);
     }

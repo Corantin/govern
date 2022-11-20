@@ -1,0 +1,145 @@
+{
+	"compiler": {
+		"version": "0.6.8+commit.0bbfe453"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			".deps/npm/@aragon/govern-core/contracts/pipelines/GovernQueue.sol": "GovernQueueStateLib"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 20000
+		},
+		"remappings": []
+	},
+	"sources": {
+		".deps/npm/@aragon/govern-core/contracts/pipelines/GovernQueue.sol": {
+			"keccak256": "0x3ba5d7e3b4a1776c4e1dee0e1fccb5f8312227e011a274a0c5b6576ac4e87e99",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://e7e86b02e6d00f0967e2b3763896213bf7e625a3b7f25e705ef58c829a324e84",
+				"dweb:/ipfs/QmY7sJ983HSVj7Fntm8C5xMTbxWbi3e5HgcB7LkCQa1SaU"
+			]
+		},
+		"@aragon/govern-contract-utils/contracts/acl/ACL.sol": {
+			"keccak256": "0xfc3130638c04860e1006ccc2a765c36f22a3eadb2f095098f49d37ed26c073cc",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://6fb3977d6f180e72b64ff5bc500240f4598e509546999beaf897fd706bb000f9",
+				"dweb:/ipfs/QmcGNRxbc7HKdZ7DTgP8Fpg1qMVwnsQR7FKifKD18eRhix"
+			]
+		},
+		"@aragon/govern-contract-utils/contracts/acl/IACLOracle.sol": {
+			"keccak256": "0x978bedb926117b472212ea90debf71b4274bf1e1e673f541247cc01c93b55062",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://57f7eabf6a7c39963b236cac15069ec5ae5075f692cbd142985d335345884317",
+				"dweb:/ipfs/QmW6U5h5M7F73NgcRUvTeNWoFTDkU7cEwwBgXFZCgyRySm"
+			]
+		},
+		"@aragon/govern-contract-utils/contracts/adaptative-erc165/AdaptativeERC165.sol": {
+			"keccak256": "0x38499e059897298638ffbcdd3d191c4f345e0a2537fd70d3cd17d47758b4cca2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://cb9150551d474b0f7cdfb84a83a4b4d92778ba06a39a67d12ae2c4b111035f46",
+				"dweb:/ipfs/QmXQ9NRjcepwHbBwqVw7EMGQonotE7UHPa1jYNDXR7mXeV"
+			]
+		},
+		"@aragon/govern-contract-utils/contracts/address-utils/AddressUtils.sol": {
+			"keccak256": "0x64afde65cee1947a6b5a53730e0c42c71d6042e461b0f39d5713c7f6771757f2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ddcb223eded092e290b9520e52dc0193fbcb081d3d63255d64830ccb124e66d9",
+				"dweb:/ipfs/QmZ8iGQRmJ6Wxygm4w8nge8CuTxe5paNFG6m8t3NfQf1Ti"
+			]
+		},
+		"@aragon/govern-contract-utils/contracts/deposits/DepositLib.sol": {
+			"keccak256": "0x882fc25e75b2be510e30442e1448559437dd21e250cf7c2ff72161d64f0b0889",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://a5d96ba2d3f85fcbaffa4497850d04aa517081f8e9f5b73a44f33b59e44ee287",
+				"dweb:/ipfs/QmdKzwPiqw6p8j2Ur3XUpGBdCskiXv1mRE5BNBP68iYpVE"
+			]
+		},
+		"@aragon/govern-contract-utils/contracts/erc165/ERC165.sol": {
+			"keccak256": "0x48bc84112e6ba3faee6e57081d97284338bda87af97e1353a957701b8059c80d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://831c836477c07bac16125912e67206995bd540a168aeffa2554e870afedff79f",
+				"dweb:/ipfs/QmdSPGhC5WgyDrEVMpTBkZshRsreVCpBBFHCBMiFcpVTyi"
+			]
+		},
+		"@aragon/govern-contract-utils/contracts/erc20/SafeERC20.sol": {
+			"keccak256": "0xf5c2b2fceb1f639cb56c6e6e098955a5583d4e240b7a021c0e3afa9de60374f4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7dbaeabc7a0450ecec730a6b9a7ed6b3dc02177b48d9387e8c13c84f018025c4",
+				"dweb:/ipfs/QmadPQTj8chnqf21H1MfD3s4yv5RYzcan8jQErsseeKu7D"
+			]
+		},
+		"@aragon/govern-contract-utils/contracts/initializable/Initializable.sol": {
+			"keccak256": "0xebf2390cfe1c1d57fa3d2dae190a56db50d03fdd6732f8aef233a34581f5760b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://dda59de415fc0cbdb337d7f40dbfc4ee70db13765ddf17eaeeeb7a67ce16a8ef",
+				"dweb:/ipfs/QmQRvwzQqLg6TXALbt4Etn6cfhyJwh5S336uepeP39Lvvv"
+			]
+		},
+		"@aragon/govern-contract-utils/contracts/protocol/IArbitrable.sol": {
+			"keccak256": "0x90eb43471eae9e12139e544fd5bf35e0a285cb5f2b2920b06f567392d417c96b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d5a12939252920717220fb267ecef6a239f1f391593c07a651a5cb764d6c1044",
+				"dweb:/ipfs/QmXtqWCZnLzav5XfLr91T8oQ5tpyC5H8ToeV8SMUr8mwFB"
+			]
+		},
+		"@aragon/govern-contract-utils/contracts/protocol/IArbitrator.sol": {
+			"keccak256": "0xee70f23c164a044943b02709dd7af3a23187b97a4319a1a08dd2aa531c6573f1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://df4684f2ae221a462067d49037a4b1a0b30b2f381ef67b50d7cd738901619eb5",
+				"dweb:/ipfs/QmYSc7ATLKTKeqqW2hxYZsr3LGMnYepqGBUKVswU9J6J3Z"
+			]
+		},
+		"erc3k/contracts/ERC3000Data.sol": {
+			"keccak256": "0x361ff1535d9950c8140bc71ec5102018bf2c14d7d33fef965ccea0656866bab5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://bec488292bbedf7ecad83c697695cfa526242ec42b14d242fc65a06a61f77ba5",
+				"dweb:/ipfs/QmQoKtm6cs4aSNo6WCqj3zrX6kRyKikqwHvxQ45bakRTba"
+			]
+		},
+		"erc3k/contracts/IERC3000.sol": {
+			"keccak256": "0x274bc6206afff001e43f8c51ecddc1af5f6576cb0cf8738669211e7a384398b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a44015642420ee94ac476041c3db1e2d332f6ec0ab8031e43fae81f7d5c5cbc4",
+				"dweb:/ipfs/QmcooS9mQXdA78pCSkWmX2m2UYX5SvixgHexoEbzsoF8sa"
+			]
+		},
+		"erc3k/contracts/IERC3000Executor.sol": {
+			"keccak256": "0x568a412f560f477d831f5bc0bec927045686eea66a3a797c3f6784c7acefbf74",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://daa8a1d84ab362364241795f50de32cdf813e6b6a1a01cfd5174b80f928ec6da",
+				"dweb:/ipfs/QmVBWE11N1DQ8LTUTTvWBM2AjpnfriRZkKQ1ysu3ujrT9D"
+			]
+		}
+	},
+	"version": 1
+}

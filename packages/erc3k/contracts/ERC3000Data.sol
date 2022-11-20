@@ -5,7 +5,7 @@
 pragma solidity ^0.6.8;
 pragma experimental ABIEncoderV2;
 
-import './IERC3000Executor.sol';
+import "./IERC3000Executor.sol";
 
 library ERC3000Data {
     // TODO: come up with a non-shitty name
@@ -59,7 +59,7 @@ library ERC3000Data {
         return
             keccak256(
                 abi.encodePacked(
-                    'erc3k-v1',
+                    "erc3k-v1",
                     address(this),
                     chainId,
                     payloadHash,

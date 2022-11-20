@@ -5,7 +5,7 @@
 pragma solidity 0.6.8;
 
 contract Initializable {
-    mapping (string => uint256) public initBlocks;
+    mapping(string => uint256) public initBlocks;
 
     event Initialized(string indexed key);
 
