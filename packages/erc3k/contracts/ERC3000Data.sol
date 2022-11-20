@@ -5,7 +5,7 @@
 pragma solidity ^0.6.8;
 pragma experimental ABIEncoderV2;
 
-import "./IERC3000Executor.sol";
+import './IERC3000Executor.sol';
 
 library ERC3000Data {
     // TODO: come up with a non-shitty name
@@ -23,6 +23,7 @@ library ERC3000Data {
         Action[] actions;
         bytes32 allowFailuresMap;
         bytes proof;
+        address challenger;
     }
 
     struct Action {
@@ -35,7 +36,7 @@ library ERC3000Data {
         uint256 executionDelay; // how many seconds to wait before being able to call `execute`.
         Collateral scheduleDeposit; // fees for scheduling
         Collateral challengeDeposit; // fees for challenging
-        address resolver;  // resolver that will rule the disputes
+        address resolver; // resolver that will rule the disputes
         bytes rules; // rules of how DAO should be managed
         uint256 maxCalldataSize; // max calldatasize for the schedule
     }
@@ -45,13 +46,26 @@ library ERC3000Data {
         uint256 amount;
     }
 
-    function containerHash(bytes32 payloadHash, bytes32 configHash) internal view returns (bytes32) {
-        uint chainId;
+    function containerHash(bytes32 payloadHash, bytes32 configHash)
+        internal
+        view
+        returns (bytes32)
+    {
+        uint256 chainId;
         assembly {
             chainId := chainid()
         }
 
-        return keccak256(abi.encodePacked("erc3k-v1", address(this), chainId, payloadHash, configHash));
+        return
+            keccak256(
+                abi.encodePacked(
+                    'erc3k-v1',
+                    address(this),
+                    chainId,
+                    payloadHash,
+                    configHash
+                )
+            );
     }
 
     function hash(Container memory container) internal view returns (bytes32) {
@@ -59,17 +73,18 @@ library ERC3000Data {
     }
 
     function hash(Payload memory payload) internal pure returns (bytes32) {
-        return keccak256(
-            abi.encode(
-                payload.nonce,
-                payload.executionTime,
-                payload.submitter,
-                payload.executor,
-                keccak256(abi.encode(payload.actions)),
-                payload.allowFailuresMap,
-                keccak256(payload.proof)
-            )
-        );
+        return
+            keccak256(
+                abi.encode(
+                    payload.nonce,
+                    payload.executionTime,
+                    payload.submitter,
+                    payload.executor,
+                    keccak256(abi.encode(payload.actions)),
+                    payload.allowFailuresMap,
+                    keccak256(payload.proof)
+                )
+            );
     }
 
     function hash(Config memory config) internal pure returns (bytes32) {

@@ -7,7 +7,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   const { deployer } = await getNamedAccounts()
 
-  const registry = await deployments.get('GovernRegistry')
+//   const registry = await deployments.get('GovernRegistry')
 
   const governFactory = await deploy('GovernFactory', {
     from: deployer,
@@ -21,29 +21,29 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     // deterministicDeployment: true,
   })
 
-  const tokenFactory = await deploy('GovernTokenFactory', {
-    from: deployer,
-    log: true,
-    // deterministicDeployment: true,
-  })
+//   const tokenFactory = await deploy('GovernTokenFactory', {
+//     from: deployer,
+//     log: true,
+//     // deterministicDeployment: true,
+//   })
 
-  await deploy('GovernBaseFactory', {
-    from: deployer,
-    args: [
-      registry.address,
-      governFactory.address,
-      queueFactory.address,
-      tokenFactory.address,
-    ],
-    log: true,
-    // deterministicDeployment: true,
-  })
+//   await deploy('GovernBaseFactory', {
+//     from: deployer,
+//     args: [
+//       registry.address,
+//       governFactory.address,
+//       queueFactory.address,
+//       tokenFactory.address,
+//     ],
+//     log: true,
+//     // deterministicDeployment: true,
+//   })
 }
 export default func
 func.tags = [
   'GovernFactory',
   'GovernQueueFactory',
-  'GovernTokenFactory',
-  'GovernBaseFactory',
+//   'GovernTokenFactory',
+//   'GovernBaseFactory',
 ]
-func.dependencies = ['GovernRegistry']
+// func.dependencies = ['GovernRegistry']
