@@ -12,11 +12,9 @@ import 'solidity-coverage'
 import './tasks/govern'
 import './tasks/ens'
 
-import { node_url, accounts, RINKEBY_URL } from './utils/network'
+import { accounts } from './utils/network'
 
-const PRIV_KEYS = [
-  '82bb4bda025a053c3667217e498b75a5ffbb7e295597737523a35969b7ec2de8',
-]
+const PRIV_KEYS = [process.env.PRIVATE_KEY!]
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -29,7 +27,7 @@ const config: HardhatUserConfig = {
     },
   },
   namedAccounts: {
-    deployer: '0x91B0d67D3F47A30FBEeB159E67209Ad6cb2cE22E',
+    deployer: process.env.DEPLOYER_ACCOUNT!,
   },
   etherscan: {
     apiKey: 'MXZSHPHKD1J7MGGSW9124C61G3PJZQVK2W',

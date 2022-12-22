@@ -15,6 +15,7 @@ import '@aragon/govern-contract-utils/contracts/safe-math/SafeMath.sol';
 
 import '../protocol/IArbitrable.sol';
 import '../protocol/IArbitrator.sol';
+import '../protocol/IExecutable.sol';
 
 library GovernQueueStateLib {
     enum State {
@@ -142,7 +143,7 @@ contract GovernQueue is IERC3000, IArbitrable, AdaptiveERC165, ACL {
             ); // Contract that can execute the action
             require(
                 executable.canExecute(msg.sender),
-                'action#' + index + ' not executable'
+                'Action can''t be executed'
             );
         }
 
