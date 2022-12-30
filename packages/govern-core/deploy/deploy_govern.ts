@@ -1,10 +1,5 @@
-import { HardhatRuntimeEnvironment } from 'hardhat/types'
-import { DeployFunction } from 'hardhat-deploy/types'
-
-const func: DeployFunction = async function ({
-  deployments,
-  run,
-}: HardhatRuntimeEnvironment) {
+const func = async function ({ deployments, run }) {
+  console.log('Deploying Govern...')
   const { deploy } = deployments
   const governQueue = await deployments.get('GovernQueue')
   const constructorArguments = [

@@ -12,16 +12,29 @@ const accounts = [process.env.PRIVATE_KEY!]
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: '0.4.24',
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 2000,
+    compilers: [
+      {
+        version: '0.4.24',
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 2000,
+          },
+        },
       },
-    },
+      {
+        version: '0.6.8',
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 2000,
+          },
+        },
+      },
+    ],
   },
   etherscan: {
-    apiKey: process.env.ETHERSCAN_API_KEY,
+    apiKey: process.env.ETHERSCAN_KEY,
   },
   networks: {
     goerli: {
@@ -29,10 +42,15 @@ const config: HardhatUserConfig = {
       url: 'https://goerli.infura.io/v3/' + process.env.INFURA_KEY,
       accounts,
     },
+    xdai: {
+      chainId: 100,
+      url: 'https://rpc.gnosischain.com',
+      accounts,
+    },
   },
 }
 
-task('deployHoneyTest', 'Deploy Hooney Test').setAction(
+task('deployHoneyTest', 'Deploy Honey Test').setAction(
   async (args, { deployments, ethers, getNamedAccounts, network, run }) => {
     const deployer = '0x91B0d67D3F47A30FBEeB159E67209Ad6cb2cE22E'
     const owner = '0x7375Ed576952BD6CeD060EeE2Db763130eA13bA0'

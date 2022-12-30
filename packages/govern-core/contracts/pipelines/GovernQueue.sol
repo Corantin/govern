@@ -143,7 +143,7 @@ contract GovernQueue is IERC3000, IArbitrable, AdaptiveERC165, ACL {
             ); // Contract that can execute the action
             require(
                 executable.canExecute(msg.sender),
-                'Action can''t be executed'
+                'Action cant be executed'
             );
         }
 
