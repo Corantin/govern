@@ -1,4 +1,6 @@
-const func = async function ({ deployments, run }) {
+import { DeployFunction } from 'hardhat-deploy/types'
+
+const func: DeployFunction = async function ({ deployments, run }) {
   console.log('Deploying Govern...')
   const { deploy } = deployments
   const governQueue = await deployments.get('GovernQueue')
@@ -10,7 +12,7 @@ const func = async function ({ deployments, run }) {
     args: constructorArguments,
     log: true,
   })
-
+  console.log('Deployed Govern:', deployResult.address)
   await run('verify:verify', {
     address: deployResult.address,
     constructorArguments,
