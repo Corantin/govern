@@ -1,4 +1,6 @@
 import { HardhatUserConfig, task } from 'hardhat/config'
+import { config as dotenvConfig } from 'dotenv'
+import glob from 'glob'
 
 import '@nomiclabs/hardhat-ethers'
 import '@nomiclabs/hardhat-waffle'
@@ -8,11 +10,14 @@ import 'hardhat-abi-exporter'
 import 'hardhat-typechain'
 import 'solidity-coverage'
 
-const accounts = [
-  '0x82bb4bda025a053c3667217e498b75a5ffbb7e295597737523a35969b7ec2de8',
-]
+dotenvConfig({
+  path: glob.sync('./*.env')[0],
+})
 
-const config: HardhatUserConfig = {
+const accounts = [process.env.PRIVATE_KEY]
+console.log(accounts)
+
+const config = {
   solidity: {
     version: '0.4.24',
     settings: {
@@ -23,17 +28,42 @@ const config: HardhatUserConfig = {
     },
   },
   etherscan: {
-    apiKey: 'MXZSHPHKD1J7MGGSW9124C61G3PJZQVK2W',
+    apiKey: {
+      gnosis: process.env.GNOSISSCAN_KEY,
+      goerli: process.env.ETHERSCAN_API_KEY,
+    },
+    customChains: [
+      {
+        network: 'gnosis',
+        chainId: 100,
+        urls: {
+          // Gnosisscan
+          apiURL: 'https://api.gnosisscan.io/api',
+          browserURL: 'https://gnosisscan.io/',
+          // Blockscout
+          //apiURL: "https://blockscout.com/xdai/mainnet/api",
+          //browserURL: "https://blockscout.com/xdai/mainnet",
+        },
+      },
+    ],
+  },
+  namedAccounts: {
+    deployer: {
+      default: 0,
+      100: process.env.DEPLOYER_ADDRESS,
+      goerli: process.env.DEPLOYER_ADDRESS,
+    },
   },
   networks: {
     goerli: {
       chainId: 5,
-      url: 'https://goerli.infura.io/v3/74dcdd771e514bdf88cf139f93b3eae2',
-      accounts,
-    },
-    goerli: {
       url:
         'https://eth-goerli.g.alchemy.com/v2/E6EdrejZ7PPswowaPl3AfLkdFGEXm1PJ',
+      accounts,
+    },
+    gnosis: {
+      url: 'https://rpc.gnosischain.com',
+      chainId: 100,
       accounts,
     },
   },
